@@ -1,0 +1,30 @@
+.ShootModal {
+    width: 100%;
+    display:inline-block;
+    justify-content: center;
+    box-sizing: border-box;
+    align-items: center;
+    margin: auto;
+    padding: 10px 0;
+    box-shadow: 5px 6px 10px #B30019;
+    /* vertical-align: top; */
+}
+
+.Button {
+    background-color: #B30019;
+    color: white;
+    outline: none;
+    cursor: pointer;
+    font: inherit;
+    width: 20%;
+    padding: 10px;
+    margin: 10px;   
+    font-weight: bold;
+}
+
+@media (max-width: 400px) {
+    .Shoot {
+        display: block;
+        width: 70%;
+    }
+}

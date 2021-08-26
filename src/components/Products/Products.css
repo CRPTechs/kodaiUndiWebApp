@@ -1,0 +1,26 @@
+.Products {
+    width: 100%;
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.Button {
+    background-color: #B30019;
+    color: white;
+    outline: none;
+    cursor: pointer;
+    font: inherit;
+    width: 20%;
+    padding: 10px;
+    margin: 10px;
+    font-weight: bold;
+}
+
+@media (max-width: 400px) {
+    .Menu {
+        display: block;
+        width: 70%;
+    }
+}

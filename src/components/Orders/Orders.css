@@ -1,0 +1,22 @@
+.Orders {
+    width: 50%;
+    display: inline-block;
+    justify-content: center;
+    box-sizing: border-box;
+    align-items:center;
+    box-shadow: 0 5px 5px #B30019;
+    margin: auto;
+    padding: 10px 0;
+}
+
+.Button {
+    background-color: #B30019;
+    color: white;
+    outline: none;
+    cursor: pointer;
+    font: inherit;
+    width: 20%;
+    padding: 10px;
+    margin: 10px;
+    font-weight: bold;
+}

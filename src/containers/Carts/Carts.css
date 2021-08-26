@@ -1,0 +1,24 @@
+.Cart {
+    margin-top: 7%;
+}
+.Button {
+    background-color: #B30019;
+    color: white;
+    outline: none;
+    cursor: pointer;
+    font: inherit;
+    width: 20%;
+    padding: 10px;
+    margin: 10px;
+    font-weight: bold;
+}
+
+.Button:first-of-type {
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.Button:disabled {
+    color: #ccc;
+    cursor:not-allowed;
+}

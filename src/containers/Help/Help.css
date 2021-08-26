@@ -1,0 +1,18 @@
+.Help {
+    margin-top: 10%;
+    /* display: flex; */
+}
+.anchorBox {
+    display: block;
+    border-radius: 4px;
+    border: 1px #ddd solid;
+    background-color: #ccc;
+    width: 30%;
+}
+
+@media (max-width: 800px) {
+    .anchorBox {
+        margin-top: 15%;
+        width: 100%;
+    }
+}

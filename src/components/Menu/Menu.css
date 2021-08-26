@@ -1,0 +1,31 @@
+.Menu {
+    box-sizing: border-box;
+    padding: 20px 0;
+}
+
+.bookButton {
+    background-color: #67170B;
+    outline: none;
+    cursor: pointer;
+    border: 1px solid #67170B;
+    color: white;   
+    font-weight: bold;
+    font-family: inherit;
+    font-size: 1.2em;
+    padding: 5px 5px;
+    margin: 10px;
+    box-shadow: 2px 2px 2px #966909;
+}
+
+.boomButton:hover, .bookButton:active {
+    background-color: #FEDF47;
+    border: 1px solid #67170B;
+    color: #966909;
+}
+
+@media (max-width: 400px) {
+    .Menu {
+        display: block;
+        width: 70%;
+    }
+}

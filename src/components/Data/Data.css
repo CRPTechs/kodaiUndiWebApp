@@ -1,0 +1,40 @@
+.ContactData {
+    margin: 20px auto;
+    width: 80%;
+    text-align: center;
+    box-shadow: 0 2px 3px #ccc;
+    border: 1px solid #eee;
+    padding: 10px;
+    box-sizing: border-box;
+    /* overflow: auto; */
+}
+
+
+@media (min-width: 400px) {
+    .ContactData {
+        width: 500px;
+    }
+    .Button {
+        width: 100px;
+    }
+} 
+
+.Button {
+    background-color: #B30019;
+    outline: none;
+    cursor: pointer;
+    border: 1px solid #B30019;
+    color: white;
+    font-weight: bold;
+    font-family: inherit;
+    font-size: 1.2em;
+    padding: 5px 5px;
+    margin: 10px;
+    box-shadow: 2px 2px 2px #966909;
+}
+
+.Button:hover, .OrderButton:active {
+    background-color: #FEDF47;
+    border: 1px solid #B30019;
+    color: #966909;
+}

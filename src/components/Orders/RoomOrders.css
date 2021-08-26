@@ -1,0 +1,29 @@
+.RoomOrders {
+    width: 50%;
+    height: 100%;
+    display: inline-block;
+    justify-content: center;
+    box-sizing: border-box;
+    align-items:center;
+    box-shadow: 0 5px 5px #67170B;
+    margin: auto;
+    padding: 10px 10px;
+}
+
+.checkButton {
+    background-color: #67170B;
+    color: white;
+    outline: none;
+    cursor: pointer;
+    font: inherit;
+    width: 20%;
+    padding: 10px;
+    margin: 10px;
+    font-weight: bold;
+}
+
+.checkButton:hover {
+    background-color: #FEDF47;
+    border: 1px solid #B30019;
+    color: #966909;
+}

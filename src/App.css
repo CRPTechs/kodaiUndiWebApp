@@ -1,0 +1,56 @@
+.App {
+  text-align: center;
+}
+
+.carousel li.slide img {
+  height: 400px;
+}
+.carousel li img {
+  position: relative;
+}
+
+.carousel img {
+  pointer-events: unset;
+}
+
+.main-footer {
+  color: white;
+  background-color: #dc3545;
+  padding-top: 3em;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+.input-group-text {
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background-color: grey;
+}
+
+.contact-div {
+  padding-left: 80%;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.table-content {
+  border-width: 3px;
+  border-radius: 10px;
+  padding: 2%;
+  width: 100%;
+}
+
+.services-container {
+  padding: 2%;
+}
+.product-details {
+  border-radius: 10px;
+  border-width: 2px;
+  border-color: black;
+  padding: 5%;
+}
