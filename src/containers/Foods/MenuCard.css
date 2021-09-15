@@ -5,7 +5,43 @@
     align-items: center;
     margin: auto;
     padding: 10px 0;
-    margin-top: 6%;
+    /* margin-top: 6%; */
+}
+
+.categoryContainer {
+    display: flex;
+    flex-direction: row;
+}
+.categoryList {
+    list-style: none;
+    white-space: nowrap;
+    margin-top: -2em;
+}
+.categoryAnchors {
+    font-size: 1rem;
+    padding: .9375rem 1.25rem;
+    cursor: pointer;
+}
+.categoryAnchors:visited {
+    border: 1px solid #000;
+    border-radius: 2rem;
+    background-color: #67170B;
+}
+.categoryAnchors:hover {
+    border: 1px solid #000;
+    border-radius: 2rem;
+    background-color: #888888;
+}
+.categoryAnchors:active {
+    border: 1px solid #000;
+    border-radius: 2rem;
+    background-color: #67170B;
+}
+
+.imageUnderline {
+    height: 100px;
+    width: 200px;
+    margin-top: -3em;
 }
 
 .BookButton {

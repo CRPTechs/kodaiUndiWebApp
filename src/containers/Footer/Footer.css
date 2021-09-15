@@ -1,6 +1,6 @@
 .main-footer {
     color: white;
-    background-color: #67170B;
+    background-color: #9c2a00;
     padding-top: 3em;
     position: relative;
     bottom: 0;
@@ -9,4 +9,7 @@
 
   .nav-link {
     color: white;
+  } 
+  .nav-link:hover {
+    color: black;
   }

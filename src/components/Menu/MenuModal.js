@@ -1,22 +1,24 @@
 import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
+import './MenuModal.css';
 
 const MenuModal = (props) => {
     return (
         <Container>
-            <Row style={{boxShadow:'5px 6px 10px #67170B',padding:'20px'}}>
-                <Col>
+            <Row>
+                <Col className="column">
                     <img src={props.image} style={{width:'150px',height:'150px'}}/>
                 </Col>
-                <Col>
-                    <p>{props.title}</p>
+                <Col className="column">
+                    <p><strong>{props.title}</strong></p>
                     <p>Rs. {props.price}</p>
                     <p>{props.meal}</p>
                 </Col>
-                <Col>
+                <Col className="columnChildren">
                     <p>{props.children}</p>
                 </Col>
             </Row>
+            <hr />
         </Container>
     )
 };

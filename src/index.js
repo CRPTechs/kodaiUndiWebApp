@@ -15,6 +15,7 @@ import thunk from 'redux-thunk';
 import cartReducer from './store/cartReducer';
 import orderReducer from './store/orderReducer';
 import authReducer from './store/authReducer';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 

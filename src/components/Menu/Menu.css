@@ -1,12 +1,13 @@
 .Menu {
+    width: 100%;
     box-sizing: border-box;
-    padding: 20px 0;
+    padding: 2px;
 }
 
 .bookButton {
     background-color: #67170B;
     outline: none;
-    cursor: pointer;
+    cursor: pointer; 
     border: 1px solid #67170B;
     color: white;   
     font-weight: bold;

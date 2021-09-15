@@ -4,7 +4,12 @@ import { Container, Row, Col } from 'reactstrap';
 const Products = (props) => {
     return (
         <Container>
-            <Row style={{boxShadow:'5px 6px 10px #67170B',padding:'20px'}}>
+            <Row style={{padding:'10px 20px',
+            width:'100%',
+            display: 'flex',
+            flexDirection:'row',
+            boxSizing:'border-box',
+            border:'1px solid #ccc'}}>
                 <Col>
                     <img src={props.imageData} style={{width:'150px',height:'150px'}}/>
                 </Col>
@@ -13,7 +18,7 @@ const Products = (props) => {
                     <p>Rs. {props.price}</p>
                     <p>{props.quantity}</p>
                 </Col>
-                <Col>
+                <Col style={{padding:'5px'}}>
                     <p>{props.children}</p>
                 </Col>
             </Row>

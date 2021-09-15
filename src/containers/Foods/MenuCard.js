@@ -3,12 +3,17 @@ import './MenuCard.css';
 import { useSelector, useDispatch } from 'react-redux';
 import * as itemsAction from './actions';
 import Menu from '../../components/Menu/Menu';
-import * as cartActions from '../../store/cartAction';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as authAction from '../../store/authAction';
 import { Modal, Button } from 'react-bootstrap';
 import Data from '../../components/Data/Data';
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+import underline from '../../images/underline.png';
 
 const MenuCard = (props) => {
     const [isRefreshing, setIsRefreshing] = useState(false);
@@ -18,12 +23,12 @@ const MenuCard = (props) => {
     const history = useHistory();
     const items = useSelector(state => state.foods.availableItems);
     const categories = useSelector(state => state.foods.availableCategories);
-    console.log("Categories: " + JSON.stringify(categories));
     const [detailsShow, setDetailsShow] = useState(false);
     const [category, setCategory] = useState();
     const [menuShow, setMenuShow] = useState(false);
     const [dataShow, setDataShow] = useState(false);
     const [alert, setAlert] = useState(false);
+    const [value,setValue] = useState(0);
 
     const loadItems = useCallback(async () => {
         setError(null);
@@ -56,71 +61,30 @@ const MenuCard = (props) => {
         setMenuShow(prevState => !prevState);
     }
 
+    // const handleChange = (e,val) => {
+    //     console.log(val);
+    //     setValue(val);
+    // }
+
     return (
         <>
-            <Modal show={detailsShow} onHide={() => { setDetailsShow(false) }} centered size="lg">
-                <Modal.Header closeButton>
-                    <Modal.Title>Details</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    {/* <ShootCart 
-            shootTypeId={shootTypeId}
-            shootType={shootType}
-            price={price}
-            picCount={picCount}/> */}
-                    <p>Details show</p>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={() => { setDetailsShow(false) }}>
-                        Close
-                    </Button>
-                </Modal.Footer>
-            </Modal>
-            <Modal show={menuShow} onHide={() => { setMenuShow(false) }} centered size="lg">
-                <Modal.Header closeButton>
-                    <Modal.Title>{category}</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <Menu category={category}>
-                        {/* <button className="OrderButton"
-                            onClick={() => { dispatch(cartActions.addToCart(item)) }}>Add To Cart</button> */}
-                    </Menu>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={() => { setMenuShow(false) }}>
-                        Close
-                    </Button>
-                </Modal.Footer>
-            </Modal>
-            <Modal show={dataShow} onHide={() => { setDataShow(false) }} centered size="lg">
-                <Modal.Header closeButton>
-                    <Modal.Title>Details for the Order.</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <Data />
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={() => { setDataShow(false) }}>
-                        Close
-                    </Button>
-                </Modal.Footer>
-            </Modal>
-            <div style={{ float:'right', marginTop:'7%' }}>
-            <button className="BookButton" onClick={() => setDataShow(prevState => !prevState)}>*Add details</button>
-            </div>
+            {/* <div>
+                <button className="BookButton" onClick={() => setDataShow(prevState => !prevState)}>*Add details</button>
+            </div> */}
+            <h2>Menu Cart</h2>
+            <img src={underline} className="imageUnderline"/>
             <div className="MenuCard">
-                <div style={{ display: 'flex', flexDirection: 'column' }}>
+                <div className="categoryContainer">
                     {categories.map(item => (
-                            <button className="categoryButton" onClick={() => { selectHandler(item) }}>{item}
-                            </button>
+                        <li className="categoryList">
+                            <a className="categoryAnchors" onClick={() => selectHandler(item)}><strong>{item}</strong></a>
+                            </li>
                     ))}
                 </div>
-                {/* <div style={{margin: '20px auto',width:'80%',textAlign:'center', padding:'10px'}}>
-                    <Data />
-                </div> */}
+                <Menu category={category}/>
             </div>
-            <button onClick={handleHistory} className="BookButton">
-                {props.isAuthenticated ? 'Book My Order' : 'Sign In to Order'}</button>
+            {/* <button onClick={handleHistory} className="BookButton">
+                {props.isAuthenticated ? 'Book My Order' : 'Sign In to Order'}</button> */}
         </>
     )
 }

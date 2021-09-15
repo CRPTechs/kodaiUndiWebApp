@@ -41,6 +41,7 @@ import RoomOrders from './containers/ViewOrders/ViewRoomOrders';
 import AddPhotography from './containers/Photography/AddPhotography';
 import Shoot from './containers/Photography/Shoot';
 import Accomodation from './containers/Accomodation/Accomodation';
+import Home from './containers/Home/Home';
 
 class App extends Component {
   componentDidMount () {
@@ -50,7 +51,7 @@ class App extends Component {
     return (
       <Router>
       <div className="App">
-        <Nav />
+        {/* <Nav /> */}
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/ordersList" component={Orders} />
@@ -87,42 +88,42 @@ class App extends Component {
   }
 };
 
-const Home = () => (
-  <>
-    <div>
-      <div>
-        <Carousel autoPlay={true} transitionTime={1000} infiniteLoop={true}>
-          <div>
-            <img src={img1} />
-          </div>
-          <div>
-            <img src={img2} />
-          </div>
-          <div>
-            <img src={img3} />
-          </div>
-          <div>
-            <img src={img4} />
-          </div>
-          <div>
-            <img src={img5} />
-          </div>
-          <div>
-            <img src={img6} />
-          </div>
-          <div>
-            <img src={img7} />
-          </div>
-        </Carousel>
-      </div>
-      <h3>Welcome to Kodai Undi</h3>
-      <p>An idea built on a primary objective of reviving our Tamizh ethinic food culture, And this Ethinic food culture is from our Oldest Land "Kurinji Theenai" to our people.
-    We, <b>Kodai Undi</b> a division of <b>CRP Culinary Private Limited</b> mainly focusing on our Food Culture. As a team we hardly working to get the Traditional Tamil Food Culture back to our people.
-    Our services are Food Ordering, Location based Accomodation, Trekking, Local Guides support, Local News from us to you, Local Transport support and facility in the Western Ghats specifically on Kodaikanal.</p>
-    </div>
-    <Footer />
-  </>
-);
+// const Home = () => (
+//   <>
+//     <div>
+//       <div>
+//         <Carousel autoPlay={true} transitionTime={1000} infiniteLoop={true}>
+//           <div>
+//             <img src={img1} />
+//           </div>
+//           <div>
+//             <img src={img2} />
+//           </div>
+//           <div>
+//             <img src={img3} />
+//           </div>
+//           <div>
+//             <img src={img4} />
+//           </div>
+//           <div>
+//             <img src={img5} />
+//           </div>
+//           <div>
+//             <img src={img6} />
+//           </div>
+//           <div>
+//             <img src={img7} />
+//           </div>
+//         </Carousel>
+//       </div>
+//       <h3>Welcome to Kodai Undi</h3>
+//       <p>An idea built on a primary objective of reviving our Tamizh ethinic food culture, And this Ethinic food culture is from our Oldest Land "Kurinji Theenai" to our people.
+//     We, <b>Kodai Undi</b> a division of <b>CRP Culinary Private Limited</b> mainly focusing on our Food Culture. As a team we hardly working to get the Traditional Tamil Food Culture back to our people.
+//     Our services are Food Ordering, Location based Accomodation, Trekking, Local Guides support, Local News from us to you, Local Transport support and facility in the Western Ghats specifically on Kodaikanal.</p>
+//     </div>
+//     <Footer />
+//   </>
+// );
 
 const mapDisptachToProps = dispatch => {
   return {

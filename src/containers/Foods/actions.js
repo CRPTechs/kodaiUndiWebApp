@@ -12,6 +12,7 @@ export const fetchItems = async () => {
             throw new Error('Something went wrong!');
         }
         const resData = await response.json();
+        console.log(JSON.stringify(resData));
         const loadedItems = [];
 
         for (const key in resData) {

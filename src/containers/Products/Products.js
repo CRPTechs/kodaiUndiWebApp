@@ -9,8 +9,11 @@ import { connect } from 'react-redux';
 import * as authAction from '../../store/authAction';
 import ProductData from '../../components/ProductData/ProductData';
 import { Modal, Button } from 'react-bootstrap';
+import logo from '../../images/icon.png';
+import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
 
 const Products = (props) => {
+    const [crumbs, setCrumbs] = useState(['Home','Products']);
     const [isRefreshing, setIsRefreshing] = useState(false);
     const [error, setError] = useState();
     const [isLoading, setIsLoading] = useState(false);
@@ -19,6 +22,10 @@ const Products = (props) => {
     const products = useSelector(state => state.products.availableProducts);
     const [dataShow, setDataShow] = useState(false);
     const [alert, setAlert] = useState(false);
+
+    const selected = (crumb) => {
+        console.log(crumb);
+    }
 
     const showAlert = () => {
         setAlert(true);
@@ -54,10 +61,15 @@ const Products = (props) => {
 
     return (
         <>
-        <Modal show={alert} onHide={() => { setAlert(false) }}>
+            <div className="productsHeader"> 
+            <Breadcrumb crumbs={crumbs} selected={selected}/>
+                <img src={logo} className="undiLogo" />
+                <span className="undiName"><strong>Kodai Undi</strong></span>
+            </div>
+            <Modal show={alert} onHide={() => { setAlert(false) }}>
                 <div>
                     <p>1 item added to the cart</p>
-                    </div>
+                </div>
             </Modal>
             <Modal show={dataShow} onHide={() => { setDataShow(false) }} centered size="lg">
                 <Modal.Header closeButton>
@@ -72,7 +84,7 @@ const Products = (props) => {
                     </Button>
                 </Modal.Footer>
             </Modal>
-            <div style={{ float: 'right', marginTop: '7%' }}>
+            <div style={{ float: 'right' }}>
                 <button className="BookButton" onClick={() => setDataShow(prevState => !prevState)}>*Add details</button>
             </div>
             <div style={{

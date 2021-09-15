@@ -14,29 +14,31 @@ const Menu = (props) => {
         }, 2000);
     };
     const category = props.category;
-    const items = useSelector(state => state.items.availableItems.filter(items => items.category === category));
+    console.log(category);
+    const items = useSelector(state => state.foods.availableItems.filter(items => items.category === category));
+    console.log(items);
     const dispatch = useDispatch();
     return (
         <>
-        <Modal show={alert} onHide={() => { setAlert(false) }}>
+            <Modal show={alert} onHide={() => { setAlert(false) }}>
                 <div>
-                    <p>1 item added to the cart</p>
-                    </div>
+                    <p>1 food item added to the cart</p>
+                </div>
             </Modal>
-        <div className="Menu">
-            {items.map(items => 
-                 <MenuModal 
-                 image={items.imageData}
-                 title={items.title}
-                 category={items.category}
-                 price={items.price}
-                 meal={items.meal}>
-                     <button className="bookButton" onClick={() => { dispatch(cartActions.addToCart(items)); showAlert() }}>Add to Cart</button>
-                     <button className="bookButton">Add to wishlist</button>
-                     </MenuModal>           
-                 )}
+            <div className="Menu">
+                {items.map(items =>
+                    <MenuModal
+                        image={items.imageData}
+                        title={items.title}
+                        category={items.category}
+                        price={items.price}
+                        meal={items.meal}>
+                        <button className="bookButton" onClick={() => { dispatch(cartActions.addToCart(items)); showAlert() }}>Add to Cart</button>
+                        <button className="bookButton">Add to wishlist</button>
+                    </MenuModal>
+                )}
 
-        </div>
+            </div>
         </>
     )
 };
