@@ -36,11 +36,11 @@ const Home = () => {
                 <img src={image2} className="imageGallery" />
                 <img src={image3} className="imageGallery" />
             </div>
-            {/* <div className="homeContentServices">
+            <div className="homeContentServices">
                 <img src={image1} className="imageGallery" />
                 <img src={image2} className="imageGallery" />
                 <img src={image3} className="imageGallery" />
-            </div> */}
+            </div>
             <MenuCard />
             <Footer />
         </>
