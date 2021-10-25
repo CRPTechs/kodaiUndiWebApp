@@ -1,3 +1,7 @@
+.menuContainer {
+    border: 1px solid #ccc;
+    box-shadow: 0px 0px 10px #67170B;
+}
 .MenuCard {
     width: 100%;
     display: flex;
@@ -44,7 +48,11 @@
     margin-top: -3em;
 }
 
-.BookButton {
+.buttonContainer {
+    margin-right: 60em;
+}
+
+.toCartButton {
     background-color: #B30019;
     outline: none;
     cursor: pointer;
@@ -53,12 +61,12 @@
     font-weight: bold;
     font-family: inherit;
     font-size: 1.2em;
-    padding: 5px 5px;
-    margin: 10px; 
+    /* padding: 5px 5px; */
+    /* margin-left: 39em; */
     box-shadow: 2px 2px 2px #966909;
 }
 
-.BookButton:hover, .OrderButton:active {
+.toCartButton:hover, .OrderButton:active {
     background-color: #FEDF47;
     border: 1px solid #B30019;
     color: #966909;

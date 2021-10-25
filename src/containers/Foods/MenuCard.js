@@ -28,7 +28,7 @@ const MenuCard = (props) => {
     const [menuShow, setMenuShow] = useState(false);
     const [dataShow, setDataShow] = useState(false);
     const [alert, setAlert] = useState(false);
-    const [value,setValue] = useState(0);
+    const [value, setValue] = useState(0);
 
     const loadItems = useCallback(async () => {
         setError(null);
@@ -47,12 +47,12 @@ const MenuCard = (props) => {
     }, [loadItems]);
 
     const handleHistory = () => {
-        if (props.isAuthenticated) {
-            history.push("/cart");
-        } else {
-            props.onSetAuthRedirectPath('/cart');
-            history.push("/auth");
-        }
+        // if (props.isAuthenticated) {
+        history.push("/cart");
+        // } else {
+        // props.onSetAuthRedirectPath('/cart');
+        // history.push("/auth");
+        // }
     }
 
     const selectHandler = (category) => {
@@ -67,25 +67,27 @@ const MenuCard = (props) => {
     // }
 
     return (
-        <>
+        <div className="menuContainer">
             {/* <div>
                 <button className="BookButton" onClick={() => setDataShow(prevState => !prevState)}>*Add details</button>
             </div> */}
             <h2>Menu Cart</h2>
-            <img src={underline} className="imageUnderline"/>
+            <img src={underline} className="imageUnderline" />
+            {/* <div className="buttonContainer">
+                <button onClick={handleHistory} className="toCartButton">
+                    {props.isAuthenticated ? 'Book My Order' : 'Sign In to Order'}</button>
+            </div> */}
             <div className="MenuCard">
                 <div className="categoryContainer">
                     {categories.map(item => (
                         <li className="categoryList">
                             <a className="categoryAnchors" onClick={() => selectHandler(item)}><strong>{item}</strong></a>
-                            </li>
+                        </li>
                     ))}
                 </div>
-                <Menu category={category}/>
+                <Menu category={category} />
             </div>
-            {/* <button onClick={handleHistory} className="BookButton">
-                {props.isAuthenticated ? 'Book My Order' : 'Sign In to Order'}</button> */}
-        </>
+        </div>
     )
 }
 

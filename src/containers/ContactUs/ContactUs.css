@@ -1,3 +1,78 @@
-.Contact {
-    margin-top: 7%;
-  }
+.contactContainer {
+  border: 1px solid #ccc;
+  width: 100%;
+  box-shadow: 0 0 10px red;
+  border-radius: 1em;
+  margin: 0.5em 0;
+  display: flex;
+  flex-direction: row;
+}
+.formContainer {
+  width: 50%;
+}
+.formContainerHeader{
+  margin: 0.4em 1em;
+  font-weight: bold;
+}
+
+.contactForm {
+  display: flex;
+  flex-flow: column wrap;
+  text-align: left;
+}
+
+.contactForm input {
+  margin-left: 2em;
+  margin-bottom: 3.125rem;
+  background-color: transparent;
+  box-shadow: none;
+  border: none;
+  border-bottom: 1px solid #3c3c3c;
+}
+
+.contactForm textarea {
+  width: 100%;
+  margin-left: 2em;
+  background-color: transparent;
+    box-shadow: none;
+    border: none;
+    border-bottom: 1px solid #3c3c3c;
+    height: 3.125rem!important;
+    max-height: 3.125rem!important;
+    overflow: hidden!important;
+    resize: none;
+    max-width: 100%;
+    margin-bottom: 0.5em;
+}
+
+.submitButton {
+  border: none;
+  background-color: #ccc;
+  width: 10%;
+  color: black;
+  font-weight: bold;
+  margin: 2em 2em;
+}
+
+.addressContainer {
+  margin: 1em 1em;
+}
+.addressContainerHeader {
+  font-weight: bold;
+}
+.addressContainer ul li {
+  margin-left: 10em;
+  text-align: left;
+}
+.connectContainer {
+  margin: 1em 1em;
+}
+.connectContainerHeader {
+  font-weight: bold;
+}
+.nav-link {
+  color: black;
+} 
+.nav-link:hover {
+  color: #ccc;
+}
