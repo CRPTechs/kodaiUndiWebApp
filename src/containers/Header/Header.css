@@ -1,0 +1,60 @@
+.homeContainer {
+    background-color: #9c2a00;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+.homeHeaderLeft {
+    margin: 0 2.5em;
+    padding: 1.5em;
+    color: white;
+    display: flex;
+    align-items: center;
+    width: 40%;
+}
+.fbLogo, .twitterLogo, .instaLogo, .contactSpan, .mailSpan {
+    margin-left: 1em;
+}
+.homeHeaderRight {
+    display: flex;
+    align-items: center;
+    float: right;
+    margin-left: auto;
+    cursor: pointer;
+    width: 30%;
+}
+.undiLogo {
+    width: 50px;
+    height: 50px;
+}
+.undiName {
+    color: white;
+    margin-left: 0.5em;
+    margin-right: 5em;
+}
+.homeHeaderButton {
+    margin: 1.4em;
+    width: 30%;
+}
+.homeOrderButton {
+    background-color: #ffc900;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.homeOrderButton :hover {
+    background-color: green;
+}
+@media (max-width: 768px) {
+    .homeHeaderLeft {
+        display: none;
+    }
+    .homeHeaderRight {
+        width: 50%;
+        justify-content: center;
+    }
+    .homeHeaderButton {
+        width: 50%;
+        justify-content: center;
+    }
+}

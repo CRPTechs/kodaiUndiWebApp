@@ -1,3 +1,4 @@
+import Details from "../models/details"
 import Order from "../models/order"
 import shootOrder from "../models/shootOrder"
 import { ADD_ADDRESS, ADD_DETAILS, ADD_ORDER, ADD_SHOOT_ORDERS, FETCH_ROOM_ORDERS, PAYMENT_FAILED, PAYMENT_INITIATED, SET_ORDERS } from "./orderAction"
@@ -11,7 +12,7 @@ const initialState = {
 }
 
 export default (state = initialState, action) => {
-    switch (action.type) {
+    switch (action.type) { 
         case ADD_SHOOT_ORDERS :
             const newShootOrder = new shootOrder(
                 action.shootOrderData.id,
@@ -25,7 +26,7 @@ export default (state = initialState, action) => {
                 action.shootOrderData.createdDate,
                 action.shootOrderData.userId
             )
-            return {
+            return { 
                 ...state,
                 shootOrders: newShootOrder
             }
@@ -35,9 +36,17 @@ export default (state = initialState, action) => {
             }
         case SET_ORDERS: 
             return {
+                ...state,
                 orders: action.orders
             };
         case ADD_DETAILS:
+            console.log(action.orderDetails);
+            // const newDetails = new Details (
+            //     action.orderDetails.name,
+            //     action.orderDetails.phone,
+            //     action.orderDetails.email,
+            //     action.orderDetails.date
+            // )
             const newDetails = {
                 ...action.orderDetails
             }

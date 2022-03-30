@@ -6,7 +6,7 @@ export const EDIT_ITEMS = 'EDIT_ITEMS';
 export const fetchItems = async () => {
     try {
         const response = await fetch(
-            'https://crpapp-default-rtdb.firebaseio.com/products.json'
+            `https://crpapp-default-rtdb.firebaseio.com/products.json?status=available`
         );
         if (!response.ok) {
             throw new Error('Something went wrong!');
@@ -81,3 +81,32 @@ export const editItems = (title) => {
     }
 }
 };
+
+export const dailyMenuAction = (itemId, status) => {
+    return async (dispatch) => {
+        const response = await fetch(
+            `https://crpapp-default-rtdb.firebaseio.com/products/${itemId}.json`,
+            {
+                method: 'PATCH',
+                headers: {  
+                    'Content-Type': 'application/json'
+            },
+                body: JSON.stringify({
+                    status
+                })
+            }
+        );
+        if (!response.ok) {
+            throw new Error('Something went wrong');
+        }
+
+        const resData = await response.json();
+        dispatch({
+            type: status,
+            data: {
+                id: itemId,
+                status
+            }
+        });
+    }
+}

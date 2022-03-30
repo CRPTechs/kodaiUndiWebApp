@@ -8,12 +8,8 @@ import { connect } from 'react-redux';
 import * as authAction from '../../store/authAction';
 import { Modal, Button } from 'react-bootstrap';
 import Data from '../../components/Data/Data';
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import underline from '../../images/underline.png';
+import Loader from '../../components/Menu/loader';
+import { BsChevronDown } from 'react-icons/bs';
 
 const MenuCard = (props) => {
     const [isRefreshing, setIsRefreshing] = useState(false);
@@ -21,14 +17,8 @@ const MenuCard = (props) => {
     const [isLoading, setIsLoading] = useState(false);
     const dispatch = useDispatch();
     const history = useHistory();
-    const items = useSelector(state => state.foods.availableItems);
     const categories = useSelector(state => state.foods.availableCategories);
-    const [detailsShow, setDetailsShow] = useState(false);
     const [category, setCategory] = useState();
-    const [menuShow, setMenuShow] = useState(false);
-    const [dataShow, setDataShow] = useState(false);
-    const [alert, setAlert] = useState(false);
-    const [value, setValue] = useState(0);
 
     const loadItems = useCallback(async () => {
         setError(null);
@@ -41,11 +31,9 @@ const MenuCard = (props) => {
         }
         setIsRefreshing(false);
     }, [dispatch, setIsLoading, setError]);
-
     useEffect(() => {
         loadItems()
     }, [loadItems]);
-
     const handleHistory = () => {
         // if (props.isAuthenticated) {
         history.push("/cart");
@@ -54,40 +42,37 @@ const MenuCard = (props) => {
         // history.push("/auth");
         // }
     }
-
     const selectHandler = (category) => {
-        console.log(category);
         setCategory(category);
-        setMenuShow(prevState => !prevState);
     }
-
-    // const handleChange = (e,val) => {
-    //     console.log(val);
-    //     setValue(val);
-    // }
-
     return (
-        <div className="menuContainer">
-            {/* <div>
+        <>
+            {categories.length > 0 ?
+                <div className="menuContainer">
+                    {/* <div>
                 <button className="BookButton" onClick={() => setDataShow(prevState => !prevState)}>*Add details</button>
             </div> */}
-            <h2>Menu Cart</h2>
-            <img src={underline} className="imageUnderline" />
-            {/* <div className="buttonContainer">
+                    {/* <h2>Menu Cart</h2>
+            <img src={underline} className="imageUnderline" /> */}
+                    {/* <div className="buttonContainer">
                 <button onClick={handleHistory} className="toCartButton">
                     {props.isAuthenticated ? 'Book My Order' : 'Sign In to Order'}</button>
             </div> */}
-            <div className="MenuCard">
-                <div className="categoryContainer">
-                    {categories.map(item => (
-                        <li className="categoryList">
-                            <a className="categoryAnchors" onClick={() => selectHandler(item)}><strong>{item}</strong></a>
-                        </li>
-                    ))}
+                    <div className="MenuCard">
+                        <div className="categoryContainer">
+                            {categories.map(item => (
+                                <>
+                                <div className='categoryAnchors' onClick={() => selectHandler(item)}>{item}
+                                    <BsChevronDown />
+                                </div>
+                                {item === category && <Menu category={category} /> }
+                                </>
+                            ))}
+                        </div>
+                    </div>
                 </div>
-                <Menu category={category} />
-            </div>
-        </div>
+                : <Loader />}
+        </>
     )
 }
 

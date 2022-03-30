@@ -1,10 +1,15 @@
 .main-footer {
     color: white;
     background-color: #9c2a00;
-    padding-top: 3em;
+    /* padding-top: 3em; */
     position: relative;
     bottom: 0;
     width: 100%;
+  }
+  .footerContent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .nav-link {

@@ -1,40 +1,131 @@
 .ContactData {
-    margin: 20px auto;
-    width: 80%;
-    text-align: center;
-    box-shadow: 0 2px 3px #ccc;
-    border: 1px solid #eee;
-    padding: 10px;
-    box-sizing: border-box;
-    /* overflow: auto; */
+  margin: 20px auto;
+  width: 80%;
+  text-align: center;
+  box-shadow: 0 2px 3px #ccc;
+  border: 1px solid #eee;
+  padding: 10px;
+  box-sizing: border-box;
+  /* overflow: auto; */
 }
 
+.nameInput,
+.phoneInput,
+.emailInput {
+    width: 100%;
+  margin-top: 0.7em;
+  height: 2em;
+  padding-left: 0.3em;
+  border: 1.5px solid #c2c2c2;
+  border-radius: 5px;
+}
+.dateInput {
+  width: 75.5%;
+  margin-top: 0.7em;
+  height: 2em;
+  padding-left: 0.3em;
+  border: 1.5px solid #c2c2c2;
+  border-radius: 5px;
+}
+.timeInput {
+  width: 40%;
+  margin: 0.7em 0 0 1.3em;
+  border: 1.5px solid #c2c2c2;
+  border-radius: 5px;
+  height: 2em;
+}
+.meridianInput {
+  width: 33.5%;
+  margin: 0.7em 0 0 0.5em;
+  border: 1.5px solid #c2c2c2;
+  border-radius: 5px;
+  height: 2em;
+}
+.dobInput {
+  width: 75%;
+  margin: 0.7em 0 0 0.5em;
+  border: 1.5px solid #c2c2c2;
+  border-radius: 5px;
+  height: 2em;
+}
+.domInput {
+  width: 68.5%;
+  margin: 0.7em 0 0 0.5em;
+  border: 1.5px solid #c2c2c2;
+  border-radius: 5px;
+  height: 2em;
+}
+.dataButton {
+  background-color: #9c2a00;
+  outline: none;
+  cursor: pointer;
+  border: 1px solid #9c2a00;
+  color: white;
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-top: 0.7em;
+  border-radius: 5px;
+}
+.bannerNote {
+  font-weight: bold;
+}
+.knowMoreLink {
+  font-weight: 100;
+  text-decoration: underline;
+}
 
 @media (min-width: 400px) {
-    .ContactData {
-        width: 500px;
-    }
-    .Button {
-        width: 100px;
-    }
-} 
-
-.Button {
-    background-color: #B30019;
-    outline: none;
-    cursor: pointer;
-    border: 1px solid #B30019;
-    color: white;
-    font-weight: bold;
-    /* font-family: inherit; */
-    font-size: 1.2em;
-    padding: 5px 5px;
-    margin: 10px;
-    box-shadow: 2px 2px 2px #966909;
+  .ContactData {
+    width: 500px;
+  }
+  .Button {
+    width: 100px;
+  }
 }
-
-.Button:hover, .OrderButton:active {
-    background-color: #FEDF47;
-    border: 1px solid #B30019;
-    color: #966909;
+@media (max-width: 530px) {
+  .orderDateDiv {
+    display: flex;
+    flex-direction: column;
+  }
+  .dateInput {
+    margin-top: 0em;
+    width: 100%;
+  }
+  .orderTimeDiv {
+    display: flex;
+    flex-direction: column;
+  }
+  .timeInput {
+    margin: 0em;
+    width: 100%;
+  }
+  .meridianInput {
+    margin: 0.2em 0 0 0;
+    width: 100%;
+  }
+  .dobInputDiv {
+    display: flex;
+    flex-direction: column;
+  }
+  .dobInput {
+    margin-top: 0em;
+    width: 100%;
+  }
+  .domInputDiv {
+    display: flex;
+    flex-direction: column;
+  }
+  .domInput {
+    margin-top: 0em;
+    width: 100%;
+  }
+}
+.dataButton:hover,
+.dataButton:active {
+  background-color: #fedf47;
+  border: 1px solid #b30019;
+  color: #966909;
+}
+.errorMessage {
+  color: red;
 }

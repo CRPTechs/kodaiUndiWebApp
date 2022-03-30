@@ -1,0 +1,54 @@
+.adminContainer {
+  display: flex;
+  margin-top: 1em;
+}
+.orderListCon {
+  border: 1px solid #111;
+  background-color: #111;
+  margin: 1em 0 0 1em;
+  border-radius: 5px;
+  color: white;
+  padding: 0.3em;
+  cursor: pointer;
+  font-weight: bold;
+}
+.addMenuCon {
+  border: 1px solid #111;
+  background-color: #111;
+  margin: 1em 0 0 1em;
+  border-radius: 5px;
+  color: white;
+  padding: 0.3em;
+  cursor: pointer;
+  font-weight: bold;
+}
+.addCatCon {
+  border: 1px solid #111;
+  background-color: #111;
+  margin: 1em 0 0 1em;
+  border-radius: 5px;
+  color: white;
+  padding: 0.3em;
+  cursor: pointer;
+  font-weight: bold;
+}
+.dailyMenuCon {
+  border: 1px solid #111;
+  background-color: #111;
+  margin: 1em 0 0 1em;
+  border-radius: 5px;
+  color: white;
+  padding: 0.3em;
+  cursor: pointer;
+  font-weight: bold;
+}
+.optionSelected {
+    border: 1px solid #9c2a00;
+    background-color: #9c2a00;
+    margin: 1em 0 0 1em;
+    border-radius: 5px;
+    color: white;
+    padding: 0.3em;
+    cursor: pointer;
+    font-weight: bold;
+  }

@@ -1,33 +1,3 @@
-.homeContainer {
-    background-color: #9c2a00;
-    display: flex;
-    flex-direction: row;
-}
-.homeHeaderLeft {
-    margin: 0 2.5em;
-    padding: 1.5em;
-    color: white;
-    display: flex;
-    align-items: center;
-}
-.fbLogo, .twitterLogo, .instaLogo, .contactSpan, .mailSpan {
-    margin-left: 1em;
-}
-.homeHeaderRight {
-    display: flex;
-    align-items: center;
-    float: right;
-    margin-left: auto;
-}
-.undiLogo {
-    width: 50px;
-    height: 50px;
-}
-.undiName {
-    color: white;
-    margin-left: 0.5em;
-    margin-right: 5em;
-}
 .homeContent {
     background: url('../../images/kodai_snap_farmer.jpg');
     background-size: 100% 100%;
@@ -97,3 +67,6 @@
 .homeContentService1Span2, .homeContentService2Span2, .homeContentService3Span2, .homeContentService4Span2 {
     line-height: 1em;
 }
+.sideBarMenu {
+    height: 100%;
+}   

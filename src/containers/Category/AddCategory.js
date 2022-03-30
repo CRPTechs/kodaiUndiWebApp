@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import db from '../../firebaseService';
+import './AddCategory.css';
 
 const AddCategory = () => {
     const initialFieldValues = {
@@ -38,7 +39,7 @@ const AddCategory = () => {
     }
 
     return (
-        <form autoComplete="off" onSubmit={handleFormSubmit}>
+        <form autoComplete="off" onSubmit={handleFormSubmit} className='categoryForm'>
             <div className="form-group input-group">
                 <div className="input-group-prepend">
                     <div className="input-group-text">

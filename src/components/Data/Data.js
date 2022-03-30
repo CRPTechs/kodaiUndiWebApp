@@ -1,219 +1,105 @@
-import React, { Component } from 'react';
-import Input from '../../UI/Input/Input';
-import Modal from '../../UI/Modal/Modal';
-import { connect } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import * as orderAction from '../../store/orderAction';
 import './Data.css';
 
-class Data extends Component {
-    state = {
-        orderForm: {
-                    name:{
-                        elementType: 'input',
-                        elementConfig: {
-                            type: 'text',
-                            placeholder: 'Your Name'
-                        },
-                        value: '',
-                        validation: {
-                            required: true
-                        },
-                        valid: false,
-                        touched: false
-                    },
-                    phone: {
-                        elementType: 'input',
-                        elementConfig: {
-                            type: 'text',
-                            placeholder: 'Phone'
-                        },
-                        value: '',
-                        validation: {
-                            required: true
-                        },
-                        valid: false,
-                        touched: false
-                    },
-                    date:{
-                        elementType: 'input',
-                        elementConfig: {
-                            type: 'date',
-                            placeholder: 'Date and Time'
-                        },
-                        value: '',
-                        validation: {
-                            required: true
-                        },
-                        valid: false,
-                        touched: false
-                    },
-                    hours: {
-                        elementType:'select',
-                        elementConfig: {
-                            options: [
-                                {value: '1',displayValue: '1'},
-                                {value: '2',displayValue: '2'},
-                                {value: '3',displayValue: '3'},
-                                {value: '4',displayValue: '4'},
-                                {value: '5',displayValue: '5'},
-                                {value: '6',displayValue: '6'},
-                                {value: '7',displayValue: '7'},
-                                {value: '8',displayValue: '8'},
-                                {value: '9',displayValue: '9'},
-                                {value: '10',displayValue: '10'},
-                                {value: '11',displayValue: '11'},
-                                {value: '12',displayValue: '12'},
-                            ]
-                        },
-                        value: '12',
-                        validation: {},
-                        valid: true
-                    },
-                    mins: {
-                        elementType:'select',
-                        elementConfig: {
-                            options: [
-                                {value: '00',displayValue: '00'},
-                            ]
-                        },
-                        value: '00',
-                        validation: {},
-                        valid: true
-                    },
-                    meridian: {
-                        elementType:'select',
-                        elementConfig: {
-                            options: [
-                                {value: 'AM',displayValue: 'AM'},
-                                {value: 'PM',displayValue: 'PM'},
-                            ]
-                        },
-                        value: 'AM',
-                        validation: {},
-                        valid: true
-                    },
-                    // address: {
-                    //     elementType:'input',
-                    //     elementConfig: {
-                    //         type:'text',
-                    //         placeholder:'Full Address'
-                    //     },
-                    //     value: '',
-                    //     validation: {},
-                    //     valid: true
-                    // },
-                    // circle: {
-                    //     elementType:'select',
-                    //     elementConfig: {
-                    //         options: [
-                    //             {value: 'Anna Nagar',displayValue: 'Anna Nagar'},
-                    //             {value: 'Theppakulam',displayValue: 'Theppakulam'},
-                    //             {value: 'Keelavasal',displayValue: 'Keelavasal'},
-                    //             {value: 'Simmakal',displayValue: 'Simmakal'},
-                    //             {value: 'Koripalayam',displayValue: 'Koripalayam'},
-                    //             {value: 'Sellur',displayValue: 'Sellur'},
-                    //             {value: 'Pudhur',displayValue: 'Pudhur'},
-                    //             {value: 'Periyar',displayValue: 'Periyar'},
-                    //             {value: 'Karuppayurani',displayValue: 'Karuppayurani'},
-
-                    //         ]
-                    //     },
-                    //     value: 'Anna Nagar',
-                    //     validation: {},
-                    //     valid: true
-                    // }
-        },
-        formIsValid: false,
-        show:true
-    }
-    cancelHandler = () => {
-        this.setState({show: false});
-    }
-
-    checkValidity(value, rules) {
-        let isValid = true;
-        if(!rules) {
-            return true;
+const Data = () => {
+    const initialValues = { name: '', phone: '', email: '', date: '', time: '', meridian: 'AM', dobDate: '', domDate: '' };
+    const [formValues, setFormValues] = useState(initialValues);
+    const [formErrors, setFormErrors] = useState({});
+    const [isSubmit, setIsSubmit] = useState(false);
+    const history = useHistory();
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormValues({ ...formValues, [name]: value });
+    };
+    const detailsHandler = (e) => {
+        e.preventDefault();
+        setFormErrors(validate(formValues));
+        setIsSubmit(true);
+        if (Object.keys(formErrors).length === 0 && isSubmit) {
+            sessionStorage.setItem('orderDetails', JSON.stringify(formValues));
+            history.push('/cart');
         }
-        
-        if (rules.required) {
-            isValid = value.trim() !== '' && isValid;
-        }
-        return isValid;
     }
-
-
-    inputChangedHandler = (event, inputIdentifier) => {
-        const updatedOrderForm = {
-            ...this.state.orderForm
+    useEffect(() => {
+        console.log(formErrors);
+        if (Object.keys(formErrors).length === 0 && isSubmit) {
+            console.log(formValues);
         }
-        const updatedFormElement = {
-            ...updatedOrderForm[inputIdentifier] 
-        };
-        updatedFormElement.value = event.target.value;
-        updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation);
-        updatedFormElement.touched = true;
-        updatedOrderForm[inputIdentifier] = updatedFormElement;
-        let formIsValid = true;
-        for (let inputIdentifier in updatedOrderForm) {
-            formIsValid = updatedOrderForm[inputIdentifier].valid && formIsValid;
+    }, [formErrors])
+    const validate = (values) => {
+        const errors = {};
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+        if (!values.name) {
+            errors.name = 'Please enter Name!';
         }
-        this.setState({orderForm: updatedOrderForm, formIsValid: formIsValid});
+        if (!values.phone) {
+            errors.phone = 'Please enter Phone Number!';
+        }
+        if (!values.email) {
+            errors.email = 'Please enter Email ID!';
+        } else if (!regex.test(values.email)) {
+            errors.email = 'Please enter valid Email ID!';
+        }
+        if (!values.date) {
+            errors.date = 'Please select Date!';
+        }
+        if (!values.time) {
+            errors.time = 'Please select Time!';
+        }
+        return errors;
     }
-
-    orderHandler = (event) => {
-        console.log('testing');
-        event.preventDefault();
-            const formData = {};
-            for (let formElementIdentifier in this.state.orderForm) {
-                formData[formElementIdentifier] = this.state.orderForm[formElementIdentifier].value;
-            }
-            const order = {
-             formData
-    }
-    this.props.onAddDetails(order);
-    alert('Details Saved');
-    }
-
-    render () {
-        const formElementsArray = [];
-        for (let key in this.state.orderForm) {
-            formElementsArray.push({
-                id: key,
-                config: this.state.orderForm[key]
-            });
-        }
-        let form = (<form onSubmit={this.orderHandler}>
-            {formElementsArray.map(formElement => (
-                <Input 
-                    key={formElement.id}
-                    elementType={formElement.config.elementType}
-                    elementConfig={formElement.config.elementConfig}
-                    value={formElement.config.value}
-                    invalid={!formElement.config.valid}
-                    shouldValidate={formElement.config.validation}
-                    touched={formElement.config.touched}
-                    changed={(event) => this.inputChangedHandler(event,formElement.id)}> 
-                        </Input>
-            ))} 
-            <button className="Button" disabled={!this.state.formIsValid}>Save the Details</button> 
-        </form>);
-        const handleHistory = () => {
-            this.history.go("/services");  
-        }
-        return(
-            <div>
-            <strong>Note: Please place the order before 1 hour.</strong>
-            {form}
+    return (
+        <div>
+            <strong>Note: Please place the order before 3 hours.</strong>
+            <form onSubmit={detailsHandler}>
+                <input name='name' placeholder='Name' type='text' value={formValues.name} className='nameInput' onChange={(e) => handleChange(e)} />
+                <p className='errorMessage'>{formErrors.name}</p>
+                <input name='phone' placeholder='Phone' type='text' value={formValues.phone} className='phoneInput' onChange={handleChange} />
+                <p className='errorMessage'>{formErrors.phone}</p>
+                <input name='email' placeholder='Email' type='email' value={formValues.email} className='emailInput' onChange={handleChange} />
+                <p className='errorMessage'>{formErrors.email}</p>
+                <div className='orderDateDiv'>
+                    <label>Date of Order: </label>
+                    <input name='date' placeholder='Date' type='date' value={formValues.date} className='dateInput' onChange={handleChange} />
+                    <p className='errorMessage'>{formErrors.date}</p>
+                </div>
+                <div className='orderTimeDiv'>
+                    <label>Order Time: </label>
+                    <select name='time' className='timeInput' onChange={handleChange} value={formValues.time}>
+                        <option value='1'>1</option>
+                        <option value='2'>2</option>
+                        <option value='3'>3</option>
+                        <option value='4'>4</option>
+                        <option value='5'>5</option>
+                        <option value='6'>6</option>
+                        <option value='7'>7</option>
+                        <option value='8'>8</option>
+                        <option value='9'>9</option>
+                        <option value='10'>10</option>
+                        <option value='11'>11</option>
+                        <option value='12'>12</option>
+                    </select>
+                    <select name='meridian' value={formValues.meridian} className='meridianInput' onChange={handleChange}>
+                        <option value='AM'>AM</option>
+                        <option value='PM'>PM</option>
+                    </select>
+                    <p className='errorMessage'>{formErrors.time}</p>
+                </div>
+                <span className='bannerNote'>We take care for the celebration of your special occasions.</span>
+                <div className='dobInputDiv'>
+                    <label>Date of Birth: </label>
+                    <input name='dobDate' placeholder='Date' type='date' value={formValues.dobDate} className='dobInput' onChange={handleChange} />
+                </div>
+                <div className='domInputDiv'>
+                    <label>Date of Marriage: </label>
+                    <input name='domDate' placeholder='Date' type='date' value={formValues.domDate} className='domInput' onChange={handleChange} />
+                </div>
+                <button className='dataButton'>Save and move to cart</button>
+            </form>
         </div>
-        )
-    }
+    )
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        onAddDetails: (orderData) => dispatch(orderAction.addDetails(orderData))
-    };
-};
-
-export default connect(null,mapDispatchToProps)(Data);
+export default Data;

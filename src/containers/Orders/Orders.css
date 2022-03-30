@@ -1,0 +1,93 @@
+#orderContainer {
+    display: flex;
+    justify-content: space-between;
+}
+.orderOptions {
+  display: flex;
+}
+.cartOptions {
+  display: flex;
+}
+.moveToCartButton {
+  border: 1px solid #111;
+  background-color: #9c2a00;
+  margin: 1em 1em 0 0;
+  border-radius: 5px;
+  color: white;
+  padding: 0.3em;
+  cursor: pointer;
+  font-weight: bold;
+}
+.foodOption {
+  border: 1px solid #111;
+  background-color: #111;
+  margin: 1em 0 0 1em;
+  border-radius: 5px;
+  color: white;
+  padding: 0.3em;
+  cursor: pointer;
+  font-weight: bold;
+}
+.productOption {
+  border: 1px solid #111;
+  background-color: #111;
+  margin: 1em 0 0 1em;
+  border-radius: 5px;
+  color: white;
+  padding: 0.3em;
+  cursor: pointer;
+  font-weight: bold;
+}
+.roomOption {
+  border: 1px solid #111;
+  background-color: #111;
+  margin: 1em 0 0 1em;
+  border-radius: 5px;
+  color: white;
+  padding: 0.3em;
+  cursor: pointer;
+  font-weight: bold;
+}
+.photographyOption {
+  border: 1px solid #111;
+  background-color: #111;
+  margin: 1em 0 0 1em;
+  border-radius: 5px;
+  color: white;
+  padding: 0.3em;
+  cursor: pointer;
+  font-weight: bold;
+}
+.optionSelected {
+  border: 1px solid #9c2a00;
+  background-color: #9c2a00;
+  margin: 1em 0 0 1em;
+  border-radius: 5px;
+  color: white;
+  padding: 0.3em;
+  cursor: pointer;
+  font-weight: bold;
+}
+.posterDiv {
+  background-color: #9c2a00;
+  margin-top: 0.5em;
+}
+.posterImage {
+  width: 500px;
+  height: 450px;
+  object-fit: contain;
+}
+.foodTypesDiv {
+  display: flex;
+}
+.foodTypesList {
+  margin: 1em 0 0 1em;
+  border: 1px solid #111;
+  background-color: #111;
+  margin: 1em 0 0 1em;
+  border-radius: 5px;
+  color: white;
+  padding: 0.3em;
+  cursor: pointer;
+  font-weight: bold;
+}

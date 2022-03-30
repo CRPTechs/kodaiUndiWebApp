@@ -4,12 +4,13 @@ import './Cart.css';
 const Cart = (props) => {
     return (
         <div className="Cart">
-            <div> 
-            <p>{props.cartTotalAmount}</p>
+            <div className="Cartdiv">
+                <div className='cartTitle'>{props.productTitle}</div>
+                <div className='cartQty'>{props.quantity}(Nos)</div>
+                {/* <div>{props.prodWeight}</div> */}
+                <div className='cartPrice'><strong>Rs. {props.productPrice}</strong></div>
+                <div className='cartChildren'>{props.children}</div>
             </div>
-        <div className="Cartdiv">
-            <p>{props.productTitle} --- {props.quantity}(Nos) ---{ props.prodWeight } <strong>Rs. {props.productPrice}</strong> {props.children}</p>
-        </div>
         </div>
     )
 };

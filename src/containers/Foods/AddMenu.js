@@ -57,7 +57,7 @@ const AddMenu = () => {
 
     return (
         <form autoComplete="off" onSubmit={handleFormSubmit} className="Form">
-            <h4>Add Menu</h4>
+            {/* <h4>Add Menu</h4> */}
             <div className="form-group input-group">
                 <div className="input-group-prepend">
                     <div className="input-group-text">

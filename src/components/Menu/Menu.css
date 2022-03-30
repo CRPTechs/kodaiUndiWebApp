@@ -1,26 +1,24 @@
 .Menu {
-    width: 100%;
+    /* width: 100%; */
     box-sizing: border-box;
-    padding: 2px;
+    margin-top: 1em;
 }
 
 .bookButton {
-    background-color: #67170B;
+    background-color: #9c2a00;
     outline: none;
     cursor: pointer; 
-    border: 1px solid #67170B;
+    border: 1px solid #9c2a00;
     color: white;   
     font-weight: bold;
-    /* font-family: inherit; */
-    font-size: 1.2em;
-    padding: 5px 5px;
-    margin: 10px;
-    box-shadow: 2px 2px 2px #966909;
+    font-size: 1em;
+    border-radius: 5px;
+    margin-left: 5em;
 }
 
 .boomButton:hover, .bookButton:active {
     background-color: #FEDF47;
-    border: 1px solid #67170B;
+    border: 1px solid #9c2a00;
     color: #966909;
 }
 

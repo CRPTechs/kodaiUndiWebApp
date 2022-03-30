@@ -42,6 +42,8 @@ import AddPhotography from './containers/Photography/AddPhotography';
 import Shoot from './containers/Photography/Shoot';
 import Accomodation from './containers/Accomodation/Accomodation';
 import Home from './containers/Home/Home';
+import AllOrders from './containers/Orders/Orders';
+import Admin from './containers/Admin/Admin';
 
 class App extends Component {
   componentDidMount () {
@@ -54,14 +56,15 @@ class App extends Component {
         {/* <Nav /> */}
         <Switch>
           <Route path="/" exact component={Home} />
+          <Route path="/adminPanel" component={Admin} />
           <Route path="/ordersList" component={Orders} />
           <Route path="/addProducts" component={AddProducts} />
           <Route path="/addMenu" component={AddMenu} />
           <Route path="/addCategory" component={AddCategory} />
           <Route path="/addNews" component={AddNews} />
           <Route path="/feedback" component={Feedback} />
-          <Route path="/data" component={MenuCard} />
-          <Route path="/services" component={MenuCard} />
+          <Route path="/orders" component={AllOrders} />
+          <Route path="/details" component={Data} />
           <Route path="/contact" component={Contact} />
           <Route path="/about" component={About} />
           <Route path="/news" component={ViewNews} />

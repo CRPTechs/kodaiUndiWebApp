@@ -1,24 +1,70 @@
-.Cart {
-    margin-top: 7%;
+.cartDetails {
+  display: flex;
+  flex-direction: column;
 }
-.Button {
-    background-color: #B30019;
-    color: white;
-    outline: none;
-    cursor: pointer;
-    font: inherit;
-    width: 20%;
-    padding: 10px;
-    margin: 10px;
-    font-weight: bold;
+.cartHeader {
+  display: flex;
+  margin: 1em;
+}
+.contactDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 2em;
+  width: 100%;
+}
+/* .contactName {
+    width: 25%;
+}
+.contactPhone {
+    width: 25%;
+} 
+.contactEmail {
+    width: 25%;
+} 
+.contactDate {
+    width: 25%;
+} */
+.totalAmount {
+  display: flex;
+  justify-content: flex-end;
+  margin: 1em 2.5em 0 0;
+}
+.totalAmountNote {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 2.5em;
+}
+.cartButton {
+  border: 1px solid #111;
+  background-color: #9c2a00;
+  border-radius: 5px;
+  color: white;
+  padding: 0.3em;
+  cursor: pointer;
+  font-weight: bold;
+  margin: 1em;
+}
+.deleteButton {
+  border: 1px solid #111;
+  background-color: #9c2a00;
+  border-radius: 5px;
+  color: white;
+  padding: 0.3em;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.emptyCart {
+  margin-top: 5em;
 }
 
 .Button:first-of-type {
-    margin-left: 0;
-    padding-left: 0;
+  margin-left: 0;
+  padding-left: 0;
 }
 
 .Button:disabled {
-    color: #ccc;
-    cursor:not-allowed;
+  color: #ccc;
+  cursor: not-allowed;
 }

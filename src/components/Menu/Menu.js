@@ -11,18 +11,22 @@ const Menu = (props) => {
         setAlert(true);
         setTimeout(() => {
             setAlert(false);
-        }, 2000);
+        }, 1000);
     };
     const category = props.category;
-    console.log(category);
     const items = useSelector(state => state.foods.availableItems.filter(items => items.category === category));
-    console.log(items);
     const dispatch = useDispatch();
+    const title = sessionStorage.getItem('addedItems');
+    const addToCartHandler = (items) => {
+        dispatch(cartActions.addToCart(items));
+        sessionStorage.setItem('addedItems', items.title);
+        showAlert();
+    }
     return (
         <>
             <Modal show={alert} onHide={() => { setAlert(false) }}>
                 <div>
-                    <p>1 food item added to the cart</p>
+                    <p>{title} added.</p>
                 </div>
             </Modal>
             <div className="Menu">
@@ -33,8 +37,8 @@ const Menu = (props) => {
                         category={items.category}
                         price={items.price}
                         meal={items.meal}>
-                        <button className="bookButton" onClick={() => { dispatch(cartActions.addToCart(items)); showAlert() }}>Add to Cart</button>
-                        <button className="bookButton">Add to wishlist</button>
+                        <button className="bookButton" onClick={() => addToCartHandler(items)}>Add to Cart</button>
+                        {/* <button className="bookButton">Add to wishlist</button> */}
                     </MenuModal>
                 )}
 

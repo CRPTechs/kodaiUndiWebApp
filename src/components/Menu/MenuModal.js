@@ -4,22 +4,24 @@ import './MenuModal.css';
 
 const MenuModal = (props) => {
     return (
-        <Container>
-            <Row>
-                <Col className="column">
-                    <img src={props.image} style={{width:'150px',height:'150px'}}/>
-                </Col>
-                <Col className="column">
+        <div className='modalContainer'> 
+            <div className='modalRow'>
+                <div className="modalImage">
+                    <img src={props.image} style={{width:'150px',height:'100px'}}/>
+                </div>
+                <div className='responsiveModal'>
+                <div className="modalColumn">
                     <p><strong>{props.title}</strong></p>
                     <p>Rs. {props.price}</p>
                     <p>{props.meal}</p>
-                </Col>
-                <Col className="columnChildren">
+                </div>
+                <div className="columnChildren">
                     <p>{props.children}</p>
-                </Col>
-            </Row>
+                </div>
+                </div>
+            </div>
             <hr />
-        </Container>
+        </div>
     )
 };
 

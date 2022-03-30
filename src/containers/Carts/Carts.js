@@ -5,13 +5,14 @@ import * as orderAction from '../../store/orderAction';
 import * as cartAction from '../../store/cartAction';
 import './Carts.css';
 import { useHistory } from 'react-router-dom';
+import Header from '../Header/Header';
+import emailjs from 'emailjs-com';
+import ReactWhatsapp from 'react-whatsapp';
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
 const Carts = (props) => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const orderDetails = useSelector(state => state.order.current_details);
-  console.log(JSON.stringify(orderDetails));
   const razorpay_order_details = useSelector(state => state.order.razorpay_order_details);
   const cartTotalAmount = useSelector(state => state.cart.totalAmount);
   const cartItems = useSelector(state => {
@@ -30,11 +31,21 @@ const Carts = (props) => {
       a.productId > b.productId ? 1 : -1
     );
   });
+  const details = sessionStorage.getItem('orderDetails');
+  const orderDetails = JSON.parse(details);
   const addOrderHandler = () => {
-    dispatch(orderAction.addOrder(cartItems, cartTotalAmount, orderDetails));
+    dispatch(orderAction.addOrder(cartItems, cartTotalAmount, orderDetails.name, orderDetails.phone, orderDetails.email, orderDetails.date, orderDetails.time, orderDetails.dobDate, orderDetails.domDate));
+    // sendMail();  
+    // <ReactWhatsapp number='7639305434' message='Hi from Kodai Undi'/>
     alert('Your order has been placed successfully. Now proceed to pay for the order.');
   }
-
+  const sendMail = () => {
+    const email = sessionStorage.email;
+    emailjs.sendForm('service_vutkn0c', 'template_az1hv7b', email, 'user_ZZAsm3LtUJqPK2GXMv8iv')
+    .then(res => {
+      console.log(res);
+    }).catch(err => console.log(err));
+  }
   const loadScript = () => {
     return new Promise(resolve => {
       const script = document.createElement('script')
@@ -69,7 +80,7 @@ const Carts = (props) => {
         dispatch(orderAction.update_order(razorpay_order_details.receipt_id,
           { status: 'Payment Success', ...response },
           orderAction.PAYMENT_SUCCESS));
-          alert('Your payment is successful and your order has been placed. Thanks for ordering!');
+        alert('Your payment is successful and your order has been placed. Thanks for ordering!');
         history.push('/');
       },
       "prefill": {
@@ -96,44 +107,45 @@ const Carts = (props) => {
       dispatch(orderAction.update_order(razorpay_order_details.receipt_id,
         { status: 'Payment Failed', ...response },
         orderAction.PAYMENT_FAILED));
-        alert(response.error.description, response.error.reason);
+      alert(response.error.description, response.error.reason);
       history.push('/');
     });
     rzp1.open();
   }
   return (
-    <div> 
-      <div className="Cart">
-        <h3>Your Cart</h3>
-        <p><strong>Name:</strong> {orderDetails.orderData.formData.name }</p>
-        <p><strong>Phone:</strong> {orderDetails.orderData.formData.phone}</p>
-        { orderDetails.orderData.formData.date 
-        ? <p><strong>Date:</strong> {orderDetails.orderData.formData.date} <strong>Time:</strong> {orderDetails.orderData.formData.hours}:{orderDetails.orderData.formData.mins}
-        {orderDetails.orderData.formData.meridian}</p>
-        : null 
-        }
-        { orderDetails.orderData.formData.address
-        ? <p><strong>Address:</strong> {orderDetails.orderData.formData.address}, 
-        {orderDetails.orderData.formData.zipcode}, {orderDetails.orderData.formData.country}</p>
-        : null
-        }
-        <p>Total Amount: <strong>Rs: {cartTotalAmount}</strong></p>
-        <button className="Button" onClick={addOrderHandler}>Order Now</button>
-      </div>
-      {cartItems.map(cart => (
-        <Cart
-          key={cart.productId}
-          productTitle={cart.productTitle}
-          productPrice={cart.productPrice}
-          amount={cart.sum}
-          quantity={cart.quantity}
-          prodWeight={cart.prodWeight}>
-          <button onClick={() => { dispatch(cartAction.removeFromCart(cart.productId)) }}>Delete</button>
-        </Cart>
-      ))}
-      <br />
-      <button className="Button" onClick={displayRazorpay}>Proceed to Pay</button>
-    </div>
+    <>
+      <Header />
+      {cartItems.length > 0 ?
+        <div>
+          <div className='cartDetails'>
+            <h4 className='cartHeader'>Order Details:</h4>
+            <div className='contactDetails'>
+              <p className='contactName'><strong>Name:</strong> {orderDetails.name === 'undefined' ? '' : orderDetails.name}</p>
+              <p className='contactPhone'><strong>Phone:</strong> {orderDetails.phone === 'undefined' ? '' : orderDetails.phone}</p>
+              <p className='contactEmail'><strong>Email:</strong> {orderDetails.email === 'undefined' ? '' : orderDetails.email}</p>
+              <p className='contactDate'><strong>Date and Time:</strong> {orderDetails.date === 'undefined' ? '' : orderDetails.date + ' / ' + orderDetails.time + orderDetails.meridian}</p>
+            </div>
+          </div>
+          {cartItems.map(cart => (
+            <Cart
+              key={cart.productId}
+              productTitle={cart.productTitle}
+              productPrice={cart.productPrice}
+              amount={cart.sum}
+              quantity={cart.quantity}
+              prodWeight={cart.prodWeight}>
+              <button onClick={() => { dispatch(cartAction.removeFromCart(cart.productId)) }} className='deleteButton'>Delete</button>
+            </Cart>
+          ))}
+          <p className='totalAmount'>Total Amount: <strong>Rs: {cartTotalAmount}</strong></p>
+          <p className='totalAmountNote'>(inclusive of all taxes)</p>
+          <hr />
+          <button className="cartButton" onClick={addOrderHandler}>Order Now</button>
+          <button className="cartButton" onClick={displayRazorpay}>Proceed to Pay</button>
+        </div>
+        : <div className='emptyCart'>Your cart is empty. Order Something!</div>
+      }
+    </>
   )
 };
 

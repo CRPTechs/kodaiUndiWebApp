@@ -1,12 +1,61 @@
 /* * {
     font-family:Arial, Helvetica, sans-serif;
 } */
-
-.column {
-    display: flex;
-    flex-direction: column;
+.modalContainer {
+  display: flex;
+  justify-content: center;
+}
+.modalRow {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.modalImage {
+  width: 25%;
+}
+.modalColumn {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
 }
 .columnChildren {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+.responsiveModal {
+  width: 75%;
+  display: flex;
+  flex-direction: row;
+}
+@media (max-width: 600px) {
+  .responsiveModal {
     display: flex;
     flex-direction: column;
+  }
+  .modalColumn {
+    width: 70%;
+  }
+  .columnChildren {
+    width: 70%;
+  }
+}
+@media (max-width: 500px) {
+  .modalRow {
+    display: flex;
+    flex-direction: column;
+  }
+  .modalImage {
+    width: 100%;
+  }
+  .modalColumn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+  .columnChildren {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
 }

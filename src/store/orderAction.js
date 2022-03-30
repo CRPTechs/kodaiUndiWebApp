@@ -142,7 +142,7 @@ export const fetchOrders = () => {
         console.log(getState());
         try {
             const response = await fetch(
-                `https://crpapp-default-rtdb.firebaseio.com/orders.json?orderBy="userId"&equalTo="${userId}"&auth=${token}`
+                `https://crpapp-default-rtdb.firebaseio.com/orders.json`
             );
 
             // if(!response.ok) {  
@@ -155,16 +155,17 @@ export const fetchOrders = () => {
     
                 for( const key in resData) {
                     let order = new Order(
-                        resData[key].name, 
-                        resData[key].phone, 
-                        resData[key].userId
+                        key,
+                        resData[key].cartItems, 
+                        resData[key].totalAmount,
+                        resData[key].createdDate,
+                        resData[key].date,
+                        resData[key].status,
+                        resData[key].name,
+                        resData[key].phone,
+                        resData[key].email,
+                        resData[key].time,
                     );
-                        order.id = key;
-                        order.items = resData[key].cartItems;
-                        order.data = resData[key].orderData;
-                        order.totalAmount = resData[key].totalAmount;
-                        order.createdDate = new Date(resData[key].date);
-                        order.status = resData[key].status;
                     loadedOrders.push( order );           
                 }
                 // loadedOrders.sort((a,b) => {
@@ -174,14 +175,27 @@ export const fetchOrders = () => {
                 //     return b.orderDate - a.orderDate; 
                 // });
                 console.log("Loaded Orders:" +JSON.stringify(loadedOrders));
-        dispatch({type: SET_ORDERS, orders: loadedOrders});       
+        dispatch({type: SET_ORDERS, orders: loadedOrders});   
     } catch(err) {
         throw err;
     }
     };
 };
 
-export const addDetails = (orderData) => {
+export const addDetails = (name,phone,email,date) => {
+    return async (dispatch, getState) => {
+        const userId = getState().auth.userId;
+        const details = { name, phone, email, date };
+        dispatch({
+            type: ADD_DETAILS,
+            orderDetails: {details}
+        });
+        console.log(details);
+    }
+}
+
+export const addAddress = (orderData) => {
+    console.log(JSON.stringify(orderData));
     return async (dispatch, getState) => {
         const userId = getState().auth.userId;
         dispatch({
@@ -194,21 +208,7 @@ export const addDetails = (orderData) => {
     }
 }
 
-export const addAddress = (orderData) => {
-    console.log(JSON.stringify(orderData));
-    return async (dispatch, getState) => {
-        const userId = getState().auth.userId;
-        dispatch({
-            type: ADD_DETAILS,
-            orderDetails: {
-                orderData,
-                userId: userId
-            }
-        });
-    }
-}
-
-export const addOrder = (cartItems, totalAmount,orderDetails) => {
+export const addOrder = (cartItems, totalAmount, name, phone, email, date, time, dobDate, domDate) => {
     return async (dispatch,getState) => {
         const token = getState().auth.token;
         const userId = getState().auth.userId;
@@ -216,12 +216,18 @@ export const addOrder = (cartItems, totalAmount,orderDetails) => {
         const order = {
             cartItems,
             totalAmount,
+            name,
+            phone,
+            email,
+            date,
+            time,
+            dobDate,
+            domDate,
             status: 'Order Placed',
-            ...orderDetails,
             createdDate
         };
         const response = await fetch(
-            `https://crpapp-default-rtdb.firebaseio.com/orders.json?auth=${token}`,
+            `https://crpapp-default-rtdb.firebaseio.com/orders.json`,
             {
                 method: 'POST',
                 headers: {
@@ -243,14 +249,11 @@ export const addOrder = (cartItems, totalAmount,orderDetails) => {
                 ...order
             }
         });
-        const headers = {
-            'Authorization': 'Basic ' + base64.encode("rzp_live_jQ5jvvQyL9efRf" + ":" + "wzFY27Fb949quJyTXMGZ8OVo"),
-            'Content-Type': 'application/json'
-        }
         const response_checkout = await fetch(
-            "http://localhost:3001/checkout",
+            "https://us-central1-crpapp.cloudfunctions.net/checkout",
             {
                 method: 'POST',
+                mode: 'no-cors',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -278,7 +281,7 @@ export const update_order = (order_id, order_details, status) => {
         const token = getState().auth.token;
         const userId = getState().auth.userId;
         const response = await fetch(
-            `https://crpapp-default-rtdb.firebaseio.com/orders/${order_id}.json?auth=${token}`,
+            `https://crpapp-default-rtdb.firebaseio.com/orders/${order_id}.json`,
             {
                 method: 'PATCH',
                 headers: {  
@@ -299,6 +302,35 @@ export const update_order = (order_id, order_details, status) => {
             data: {
                 id: order_id,
                 ...order_details
+            }
+        });
+    }
+}
+
+export const acknowledgeOrder = (orderId, status) => {
+    return async (dispatch) => {
+        const response = await fetch(
+            `https://crpapp-default-rtdb.firebaseio.com/orders/${orderId}.json`,
+            {
+                method: 'PATCH',
+                headers: {  
+                    'Content-Type': 'application/json'
+            },
+                body: JSON.stringify({
+                    status
+                })
+            }
+        );
+        if (!response.ok) {
+            throw new Error('Something went wrong');
+        }
+
+        const resData = await response.json();
+        dispatch({
+            type: status,
+            data: {
+                id: orderId,
+                status
             }
         });
     }

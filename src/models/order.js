@@ -1,19 +1,15 @@
-import moment, { min } from 'moment';
-
 class Order {
-    id;
-    items;
-    data;
-    totalAmount;
-    createdDate;
-    status;
-    constructor(name, phone) {
+    constructor(id, items, totalAmount, createdDate, orderDate, status, name, phone, email, time) {
+        this.id = id;
+        this.items = items;
+        this.totalAmount = totalAmount;
+        this.createdDate = createdDate;
+        this.orderDate = orderDate;
+        this.status = status;
         this.name = name;
         this.phone = phone;
-    }
-    get readableDate() {
-        return moment(this.date).format('Do MMMM YYYY, hh:mm');
+        this.email = email;
+        this.time = time;
     }
 }
-
 export default Order;

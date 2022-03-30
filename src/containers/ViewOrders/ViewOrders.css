@@ -1,3 +1,51 @@
 .ViewOrders {
-    margin-top: 10%;
+    margin-top: 1em;
+}
+.viewOrderButton {
+    border-radius: 5px;
+    padding: 0.1em;
+    border: 1px solid #9c2a00;
+    font-weight: bold;
+    color: black;
+    cursor: pointer;
+}
+.viewOrderButton:hover,
+.viewOrderButton:active,
+.orderDetailButton:hover {
+  background-color: #9c2a00;
+  border: 1px solid #9c2a00;
+  color: white;
+}
+.orderDetailItemsHeader {
+    margin-top: 1em;
+    display: flex;
+}
+.orderDetailItemsHeader1 {
+    width: 40%;
+    font-weight: bold;
+}
+.orderDetailItemsHeader2,.orderDetailItemsHeader3,.orderDetailItemsHeader4 {
+    width: 20%;
+    font-weight: bold;
+}
+.orderDetailItemsList {
+    display: flex;
+}
+.orderDetailItemsList1 {
+    width: 40%;
+}
+.orderDetailItemsList2,.orderDetailItemsList3,.orderDetailItemsList4 {
+    width: 20%;
+}
+.orderDetailItems {
+    display: flex;
+}
+.orderDetailButton {
+    margin-top: 1em;
+    border-radius: 5px;
+    padding: 0.1em;
+    border: 1px solid #9c2a00;
+    font-weight: bold;
+    color: black;
+    cursor: pointer;
 }
