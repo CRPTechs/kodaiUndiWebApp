@@ -33,7 +33,10 @@
   width: 50%;
 }
 .addressRightContainer {
-  width: 50%;
+  width: 25%;
+}
+.mapContainer {
+  width: 25%;
 }
 .addressContainerHeader {
   font-weight: bold;
@@ -90,7 +93,7 @@
     margin-left: 0.5em;
   }
 }
-@media (max-width: 350px) {
+@media (max-width: 550px) {
   .addressContainer {
     flex-direction: column;
   }
@@ -99,5 +102,8 @@
   }
   .addressRightContainer {
     width: 100%;
+  }
+  .mapContainer {
+    width: 90%;
   }
 }

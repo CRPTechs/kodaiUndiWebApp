@@ -122,10 +122,13 @@ const Contact = () => {
                 <div className="addressRightContainer">
                     <h4 className="addressContainerHeader">Contacts</h4>
                     <ul className='list-unstyled'>
-                        <li><FaPhoneSquareAlt /> +91 9442777047</li>
+                        <li><FaPhoneSquareAlt /> +91 9442777047</li> 
                         <li><FaMailBulk /> support@kodaiundi.in</li>
                     </ul>
                     <button className='dataButton' onClick={buttonHandler}>Privacy Policy</button>
+                </div>
+                <div className='mapContainer'>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3926.318975187508!2d77.48424611397165!3d10.235837371739535!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b07676e9f9b6965%3A0xd256e2089dc84398!2sKodai%20Undi!5e0!3m2!1sen!2sin!4v1649669922470!5m2!1sen!2sin" width="400" height="200" style={{border:0}} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
         </div>
