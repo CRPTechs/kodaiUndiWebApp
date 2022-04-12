@@ -67,7 +67,7 @@
   border: 1px solid #b30019;
   color: white;
   font-weight: bold;
-  font-family: inherit;
+  /* font-family: inherit; */
   font-size: 1.2em;
   /* padding: 5px 5px; */
   /* margin-left: 39em; */
@@ -88,7 +88,7 @@
   border: 1px solid #67170b;
   color: white;
   font-weight: bold;
-  font-family: inherit;
+  /* font-family: inherit; */
   font-size: 1.2em;
   padding: 5px 5px;
   margin: 10px;
@@ -108,7 +108,7 @@
   cursor: pointer;
   border: 1px solid #fedf47;
   color: #966909;
-  font-family: inherit;
+  /* font-family: inherit; */
   font-size: 1.2em;
   padding: 5px 5px;
   box-shadow: 2px 2px 2px #966909;

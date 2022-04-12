@@ -63,10 +63,12 @@ const Contact = () => {
         <>
         <Modal show={privacy} onHide={() => { setPrivacy(false) }}>
                 <div>
+                    <Modal.Header closeButton>
                     <div className='contactModal'>
                         <div className={isSelected === 'privacy' ? 'optionSelected' : 'contactModalDiv'} onClick={() => selectHandler('privacy')}>Privacy Policy</div>
                         <div className={isSelected === 'terms' ? 'optionSelected' : 'contactModalDiv'} onClick={() => selectHandler('terms')}>Terms and Conditions</div>
                     </div>
+                    </Modal.Header>
                     { isSelected === 'terms' && <Terms /> }
                     { isSelected === 'privacy' && <Privacy /> }
                 </div>
