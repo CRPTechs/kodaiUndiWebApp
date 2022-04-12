@@ -1,9 +1,11 @@
-import { SET_ITEMS, EDIT_ITEMS } from './actions';
+import { SET_ITEMS, EDIT_ITEMS, FETCH_ALL_ITEMS } from './actions';
 
 const initialState = {
     availableCategories: [],
     availableItems: [],
-    editItems: []
+    editItems: [],
+    allItems: [],
+    allCategories: []
 }
 
 export default (state = initialState, action) => {
@@ -26,6 +28,19 @@ export default (state = initialState, action) => {
                     ...state,
                     editItems: action.editItems
                 }
+        case FETCH_ALL_ITEMS:
+            let fetchedCategories = action.items.map(item => item.category);
+            let category = [];
+            for(let i = 0; i<fetchedCategories.length; i++) {
+                if(!category.includes(fetchedCategories[i])){
+                    category.push(fetchedCategories[i]);
+                }
+            }
+            return {
+                ...state,
+                allItems: action.items,
+                allCategories: category
+            };
         default:
             return state;
     }

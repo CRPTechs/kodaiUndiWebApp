@@ -1,72 +1,114 @@
 .homeContent {
-    background: url('../../images/kodai_snap_farmer.jpg');
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
+    width: 100%;
     display: flex;
     flex-direction: column;
+    background-color: #212428;
 }
-.homeContentHeader {
-    margin: 0 20em;
-    text-align: left;
+.homeContentResponsive {
+    display: none;
 }
-.homeContentSpan {
+.firstContainer {
+    width: 100%;
+    display: flex;
+}
+.firstConImageContainer {
+    width: 50%;
+}
+.firstConImage {
+    width: 60%; 
+    height: 70%;
+    padding: 5px;
+    border-radius: 2em;
+}
+.firstConImage:not(:disabled) {
+    animation: enable 1.0s ease-in-out;
+}
+.firstConSpan {
     padding: 1em;
     width: 50%;
     font-weight: 600;
-    margin: 0 40em;
     text-align:left;
+    color: white;
 }
-.homeContentServices {
+.secondContainer {
+    width: 100%;
     display: flex;
-    flex-direction: row;
-    box-sizing: border-box;
-    background-color: #ffc900;  
-    box-shadow: 0px 0px 20px green;
 }
-.imageGallery {
-    width: 300px; 
-    height: 300px;
+.secondConImageContainer {
+    width: 50%;
+}
+.secondConImage {
+    width: 60%; 
+    height: 70%;
     padding: 5px;
-    margin-left: 4.5em;
-    margin-right: 2.5em;
     border-radius: 2em;
 }
-.imageGallery:not(:disabled) {
+.secondConImage:not(:disabled) {
     animation: enable 1.0s ease-in-out;
 }
-.homeContentService1, .homeContentService2, .homeContentService3, .homeContentService4 {
-    padding: 2em;
-    box-sizing: border-box;
-    background-color: rgba(55,55,55,0.5);
-    width: 20%;
-    margin-left: 5%;
-    display: flex;
-    flex-direction: column;
-    cursor: pointer;
-    border-radius: 2em;
+.secondConSpan {
+    padding: 1em;
+    width: 50%;
+    font-weight: 600;
+    text-align:left;
+    color: white;
 }
-.homeContentService1:hover, .homeContentService2:hover, .homeContentService3:hover, .homeContentService4:hover {
-    background-color: #9c2a00;
+@media (max-width: 750px) {
+    .homeContent {
+        display: none;
+    }
+    .homeContentResponsive {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        background-color: #212428;
+    }
+    .firstContainer {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .firstConImageContainer {
+        width: 100%;
+    }
+    .firstConImage {
+        width: 60%; 
+        height: 70%;
+        padding: 5px;
+        border-radius: 2em;
+    }
+    .firstConImage:not(:disabled) {
+        animation: enable 1.0s ease-in-out;
+    }
+    .firstConSpan {
+        padding: 1em;
+        width: 100%;
+        font-weight: 600;
+        text-align:left;
+        color: white;
+    }
+    .secondContainer {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .secondConImageContainer {
+        width: 100%;
+    }
+    .secondConImage {
+        width: 60%; 
+        height: 70%;
+        padding: 5px;
+        border-radius: 2em;
+    }
+    .secondConImage:not(:disabled) {
+        animation: enable 1.0s ease-in-out;
+    }
+    .secondConSpan {
+        padding: 1em;
+        width: 100%;
+        font-weight: 600;
+        text-align:left;
+        color: white;
+    }
 }
-.anchorDiv {
-    display: flex;
-    flex-direction: column;
-    text-decoration: none;
-    color: black;
-    background-color: transparent;
-}
-.anchorDiv:hover {
-    color: black;
-    text-decoration: none;
-}
-
-.homeContentService1Span1, .homeContentService2Span1, .homeContentService3Span1, .homeContentService4Span1 {
-    font-weight: bold;
-}
-
-.homeContentService1Span2, .homeContentService2Span2, .homeContentService3Span2, .homeContentService4Span2 {
-    line-height: 1em;
-}
-.sideBarMenu {
-    height: 100%;
-}   

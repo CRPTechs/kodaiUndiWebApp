@@ -1,6 +1,6 @@
 .Cart {
     display: flex;
-    width: 100%;
+    width: 90%;
     box-sizing: border-box;
     margin: auto;
     padding: 5px 0;
@@ -12,7 +12,7 @@
     display:flex;
     justify-content: space-around;
     align-content:space-around;
-    width: 100%;
+    width: 90%;
 }
 .cartTitle {
     width: 40%;

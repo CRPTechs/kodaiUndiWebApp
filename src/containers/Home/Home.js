@@ -22,14 +22,40 @@ const Home = () => {
         <>
             <Header />
             <div className="homeContent">
-                <span className="homeContentSpan">An idea built on a primary objective of reviving our Tamizh ethinic food culture, And this Ethinic food culture is from our Oldest Land "Kurinji Theenai" to our people.
-                    We, <b>Kodai Undi</b> a division of <b>CRP Culinary Private Limited</b> mainly focusing on our Food Culture. As a team we hardly working to get the Traditional Tamil Food Culture back to our people.
-                    Our services are Food Ordering, Location based Accomodation, Trekking, Local Guides support, Local News from us to you, Local Transport support and facility in the Western Ghats specifically on Kodaikanal.</span>
+                <div className='firstContainer'>
+                    <div className='firstConImageContainer'>
+                        <img src={image1} className="firstConImage" />
+                    </div>
+                    <span className="firstConSpan">An idea built on a primary objective of reviving our Tamizh ethinic food culture, And this Ethinic food culture is from our Oldest Land "Kurinji Theenai" to our people.
+                        We, <b>Kodai Undi</b> a division of <b>CRP Culinary Private Limited</b> mainly focusing on our Food Culture. As a team we hardly working to get the Traditional Tamil Food Culture back to our people.
+                        Our services are Food Ordering, Location based Accomodation, Trekking, Local Guides support, Local News from us to you, Local Transport support and facility in the Western Ghats specifically on Kodaikanal.</span>
+                </div>
+                <div className='secondContainer'>
+                    <span className="secondConSpan">An idea built on a primary objective of reviving our Tamizh ethinic food culture, And this Ethinic food culture is from our Oldest Land "Kurinji Theenai" to our people.
+                        We, <b>Kodai Undi</b> a division of <b>CRP Culinary Private Limited</b> mainly focusing on our Food Culture. As a team we hardly working to get the Traditional Tamil Food Culture back to our people.
+                        Our services are Food Ordering, Location based Accomodation, Trekking, Local Guides support, Local News from us to you, Local Transport support and facility in the Western Ghats specifically on Kodaikanal.</span>
+                    <div className='secondConImageContainer'>
+                        <img src={image1} className="secondConImage" />
+                    </div>
+                </div>
             </div>
-            <div className="homeContentServices">
-                {show ? <img src={image1} className="imageGallery" /> : <img src={image4} className="imageGallery" />}
-                {show ? <img src={image2} className="imageGallery" /> : <img src={image5} className="imageGallery" />}
-                {show ? <img src={image3} className="imageGallery" /> : <img src={image7} className="imageGallery" />}
+            <div className="homeContentResponsive">
+                <div className='firstContainer'>
+                    <div className='firstConImageContainer'>
+                        <img src={image1} className="firstConImage" />
+                    </div>
+                    <span className="firstConSpan">An idea built on a primary objective of reviving our Tamizh ethinic food culture, And this Ethinic food culture is from our Oldest Land "Kurinji Theenai" to our people.
+                        We, <b>Kodai Undi</b> a division of <b>CRP Culinary Private Limited</b> mainly focusing on our Food Culture. As a team we hardly working to get the Traditional Tamil Food Culture back to our people.
+                        Our services are Food Ordering, Location based Accomodation, Trekking, Local Guides support, Local News from us to you, Local Transport support and facility in the Western Ghats specifically on Kodaikanal.</span>
+                </div>
+                <div className='secondContainer'>
+                <div className='secondConImageContainer'>
+                        <img src={image1} className="secondConImage" />
+                    </div>
+                    <span className="secondConSpan">An idea built on a primary objective of reviving our Tamizh ethinic food culture, And this Ethinic food culture is from our Oldest Land "Kurinji Theenai" to our people.
+                        We, <b>Kodai Undi</b> a division of <b>CRP Culinary Private Limited</b> mainly focusing on our Food Culture. As a team we hardly working to get the Traditional Tamil Food Culture back to our people.
+                        Our services are Food Ordering, Location based Accomodation, Trekking, Local Guides support, Local News from us to you, Local Transport support and facility in the Western Ghats specifically on Kodaikanal.</span>
+                </div>
             </div>
             <Contact />
             <Footer />

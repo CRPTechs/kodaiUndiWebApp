@@ -1,9 +1,12 @@
 import base64 from 'base-64';
 import Order from '../models/order';
+import PartyOrder from '../models/partyOrder';
 import roomOrder from '../models/roomOrders';
 
 export const ADD_ORDER = 'ADD_ORDER';
+export const ADD_PARTY_ORDER = 'ADD_PARTY_ORDER';
 export const SET_ORDERS = 'SET_ORDERS';
+export const SET_PARTY_ORDERS = 'SET_PARTY_ORDERS';
 export const PAYMENT_INITIATED = 'PAYMENT_INITIATED';
 export const ADD_DETAILS = 'ADD_DETAILS';
 export const ADD_ADDRESS = 'ADD_ADDRESS';
@@ -11,6 +14,7 @@ export const PAYMENT_SUCCESS = 'PAYMENT_SUCCESS';
 export const PAYMENT_FAILED = 'PAYMENT_FAILED';
 export const FETCH_ROOM_ORDERS = 'FETCH_ROOM_ORDERS';
 export const ADD_SHOOT_ORDERS = 'ADD_SHOOT_ORDERS';
+export const CONTACT_US_ACTION = 'CONTACT_US_ACTION';
 
 export const addShootOrders = (shootTypeId,shootType,price,picCount,name,phone,props) => {
     return async (dispatch,getState) => {
@@ -128,7 +132,7 @@ export const updateRoomOrder = (order_id, status) => {
     dispatch({
         type: status,
         data: {
-            id: order_id,
+            id: order_id, 
             status
         }
     });
@@ -208,6 +212,7 @@ export const addAddress = (orderData) => {
     }
 }
 
+
 export const addOrder = (cartItems, totalAmount, name, phone, email, date, time, dobDate, domDate) => {
     return async (dispatch,getState) => {
         const token = getState().auth.token;
@@ -249,30 +254,31 @@ export const addOrder = (cartItems, totalAmount, name, phone, email, date, time,
                 ...order
             }
         });
-        const response_checkout = await fetch(
-            "https://us-central1-crpapp.cloudfunctions.net/checkout",
-            {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    amount: totalAmount,
-                    currency: "INR",
-                    receipt: resData.name,
-                })
-            }
-        );
-        const payment_response = await response_checkout.json();
-        dispatch({
-            type: PAYMENT_INITIATED,
-            data: {
-                id: payment_response.id,
-                amount: payment_response.amount,
-                receipt_id: payment_response.receipt
-            }
-        });
+        // const response_checkout = await fetch(
+        //     "http://localhost:3001/checkout",
+        //     {
+        //         method: 'POST',
+        //         mode: 'no-cors',
+        //         headers: {
+        //             'Content-Type': 'application/json'
+        //         },
+        //         body: JSON.stringify({
+        //             amount: totalAmount,
+        //             currency: "INR",
+        //             receipt: resData.name,
+        //         })
+        //     }
+        // );
+        // console.log(JSON.stringify(response_checkout));
+        // const payment_response = await response_checkout.json();
+        // dispatch({
+        //     type: PAYMENT_INITIATED,
+        //     data: {
+        //         id: payment_response.id,
+        //         amount: payment_response.amount,
+        //         receipt_id: payment_response.receipt
+        //     }
+        // });
     }
 }
 
@@ -331,6 +337,165 @@ export const acknowledgeOrder = (orderId, status) => {
             data: {
                 id: orderId,
                 status
+            }
+        });
+    }
+}
+
+export const sendMailAction = (mailId) => {
+    return async (dispatch) => {
+        const response = await fetch(
+            `https://us-central1-crpapp.cloudfunctions.net/sendMail`,
+            {
+                method: 'POST',
+                headers: {  
+                    'Content-Type': 'application/json'
+            },
+                body: JSON.stringify({
+                    mailId
+                })
+            }
+        );
+        if (!response.ok) {
+            throw new Error('Something went wrong');
+        }
+        const resData = await response.json();
+    }
+}
+
+export const addPartyOrder = (name, phone, email, date, time, meridian, category, menu, status) => {
+    return async (dispatch,getState) => {
+        const createdDate = new Date();
+        const order = {
+            name,
+            phone,
+            email,
+            date,
+            time,
+            meridian,
+            category,
+            menu,
+            status
+        };
+        const response = await fetch(
+            `https://crpapp-default-rtdb.firebaseio.com/partyOrders.json`,
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(
+                    order
+                )
+            }
+        );
+        if (!response.ok) {
+            throw new Error('Something went wrong');
+        }
+        const resData = await response.json();
+        dispatch({
+            type: ADD_PARTY_ORDER,
+            orderData: {
+                id: resData.name,
+                ...order
+            }
+        });
+    }
+}
+
+export const fetchPartyOrders = () => {
+    return async (dispatch) => {
+        const status = 'Ordered'
+        try {
+            const response = await fetch(
+                `https://crpapp-default-rtdb.firebaseio.com/partyOrders.json`
+            );
+            const resData = await response.json();
+            const loadedPartyOrders = [];
+    
+                for( const key in resData) {
+                    let partyOrder = new PartyOrder(
+                        key,
+                        resData[key].name, 
+                        resData[key].phone,
+                        resData[key].email,
+                        resData[key].date,
+                        resData[key].time,
+                        resData[key].meridian,
+                        resData[key].category,
+                        resData[key].menu,
+                        resData[key].status
+                    );
+                    loadedPartyOrders.push( partyOrder );           
+                }
+        dispatch({type: SET_PARTY_ORDERS, partyOrders: loadedPartyOrders});
+    } catch(err) {
+        throw err;
+    }
+    };
+};
+
+export const acknowledgePartyOrder = (orderId, status) => {
+    return async (dispatch) => {
+        const response = await fetch(
+            `https://crpapp-default-rtdb.firebaseio.com/partyOrders/${orderId}.json`,
+            {
+                method: 'PATCH',
+                headers: {  
+                    'Content-Type': 'application/json'
+            },
+                body: JSON.stringify({
+                    status
+                })
+            }
+        );
+        if (!response.ok) {
+            throw new Error('Something went wrong');
+        }
+
+        const resData = await response.json();
+        dispatch({
+            type: status,
+            data: {
+                id: orderId,
+                status
+            }
+        });
+    }
+}
+
+export const contactUsAction = (name, phone, email, message) => {
+    console.log(name,phone,email,message);
+    return async (dispatch) => {
+        const createdDate = new Date();
+        const details = {
+            name,
+            phone,
+            email,
+            message,
+            createdDate
+        };
+        const response = await fetch(
+            `https://crpapp-default-rtdb.firebaseio.com/contact.json`,
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(
+                    details
+                )
+            }
+        );
+        if (!response.ok) {
+            throw new Error('Something went wrong');
+        }
+        const resData = await response.json();
+        dispatch({
+            type: CONTACT_US_ACTION,
+            data: {
+                id: resData.name,
+                ...details
             }
         });
     }

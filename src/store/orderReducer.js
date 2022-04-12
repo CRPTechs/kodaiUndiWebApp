@@ -1,14 +1,17 @@
-import Details from "../models/details"
-import Order from "../models/order"
-import shootOrder from "../models/shootOrder"
-import { ADD_ADDRESS, ADD_DETAILS, ADD_ORDER, ADD_SHOOT_ORDERS, FETCH_ROOM_ORDERS, PAYMENT_FAILED, PAYMENT_INITIATED, SET_ORDERS } from "./orderAction"
+import ContactUs from "../models/contactUs";
+import Order from "../models/order";
+import PartyOrder from "../models/partyOrder";
+import shootOrder from "../models/shootOrder";
+import { ADD_ADDRESS, ADD_DETAILS, ADD_ORDER, ADD_PARTY_ORDER, ADD_SHOOT_ORDERS, CONTACT_US_ACTION, FETCH_ROOM_ORDERS, PAYMENT_FAILED, PAYMENT_INITIATED, SET_ORDERS, SET_PARTY_ORDERS } from "./orderAction";
 
 const initialState = {
     orders: [],
     roomOrders: [],
+    partyOrders: [],
     current_details: {},
     razorpay_order_details: {},
-    shootOrders: []
+    shootOrders: [],
+    contactUs: []
 }
 
 export default (state = initialState, action) => {
@@ -39,6 +42,11 @@ export default (state = initialState, action) => {
                 ...state,
                 orders: action.orders
             };
+        case SET_PARTY_ORDERS:
+            return {
+                ...state,
+                partyOrders: action.partyOrders
+            }
         case ADD_DETAILS:
             console.log(action.orderDetails);
             // const newDetails = new Details (
@@ -73,6 +81,23 @@ export default (state = initialState, action) => {
                 ...state,
                 orders: state.orders.concat(newOrder)
             };
+        case ADD_PARTY_ORDER:
+            const newPartyOrder = new PartyOrder(
+                action.orderData.id,
+                action.orderData.name,
+                action.orderData.phone,
+                action.orderData.email,
+                action.orderData.date,
+                action.orderData.time,
+                action.orderData.meridian,
+                action.orderData.category,
+                action.orderData.menu,
+                action.orderData.status
+            );
+            return {
+                ...state,
+                partyOrders: state.partyOrders.concat(newPartyOrder)
+            };
         case PAYMENT_INITIATED:
             return {
                 ...state,
@@ -86,6 +111,19 @@ export default (state = initialState, action) => {
             return {
                 ...state
             }
+        case CONTACT_US_ACTION:
+            const newContactUs = new ContactUs(
+                action.data.id,
+                action.data.name,
+                action.data.phone,
+                action.data.email,
+                action.data.message,
+                action.data.date
+            );
+            return {
+                ...state,
+                contactUs: state.contactUs.concat(newContactUs)
+            };
         default:
             return state;
     }

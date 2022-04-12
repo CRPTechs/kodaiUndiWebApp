@@ -35,8 +35,7 @@ const Carts = (props) => {
   const orderDetails = JSON.parse(details);
   const addOrderHandler = () => {
     dispatch(orderAction.addOrder(cartItems, cartTotalAmount, orderDetails.name, orderDetails.phone, orderDetails.email, orderDetails.date, orderDetails.time, orderDetails.dobDate, orderDetails.domDate));
-    // sendMail();  
-    // <ReactWhatsapp number='7639305434' message='Hi from Kodai Undi'/>
+    dispatch(orderAction.sendMailAction(orderDetails.email));
     alert('Your order has been placed successfully. Now proceed to pay for the order.');
   }
   const sendMail = () => {
@@ -139,7 +138,7 @@ const Carts = (props) => {
           ))}
           <p className='totalAmount'>Total Amount: <strong>Rs: {cartTotalAmount}</strong></p>
           <p className='totalAmountNote'>(inclusive of all taxes)</p>
-          <hr />
+          {/* <hr /> */}
           <button className="cartButton" onClick={addOrderHandler}>Order Now</button>
           <button className="cartButton" onClick={displayRazorpay}>Proceed to Pay</button>
         </div>

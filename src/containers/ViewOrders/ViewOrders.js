@@ -55,7 +55,7 @@ const Orders = () => {
                         }
                     </div>
                     <div>
-                        {viewSelectedOrders.items.length > 0 && viewSelectedOrders.items.map(items =>
+                        {viewSelectedOrders !== undefined && viewSelectedOrders.items.map(items =>
                             <div className='orderDetail'>
                                 <div className='orderDetailItemsHeader'>
                                     <div className='orderDetailItemsHeader1'>Item Name</div>

@@ -1,5 +1,5 @@
 .Menu {
-    /* width: 100%; */
+    width: 100%;
     box-sizing: border-box;
     margin-top: 1em;
 }
@@ -13,18 +13,10 @@
     font-weight: bold;
     font-size: 1em;
     border-radius: 5px;
-    margin-left: 5em;
 }
 
 .boomButton:hover, .bookButton:active {
     background-color: #FEDF47;
     border: 1px solid #9c2a00;
     color: #966909;
-}
-
-@media (max-width: 400px) {
-    .Menu {
-        display: block;
-        width: 70%;
-    }
 }

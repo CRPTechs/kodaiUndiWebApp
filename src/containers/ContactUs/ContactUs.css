@@ -1,83 +1,103 @@
 .contactContainer {
-  border: 1px solid #ccc;
   width: 97%;
-  box-shadow: 0 0 10px #9c2a00;
-  border-radius: 1em;
   margin: 0.5em 0;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
-  margin-left: 1.2em;
-}
-.addressContainerDiv {
-  display: flex;
 }
 .formContainer {
+  width: 100%;
+  display: flex;
+  margin-top: 1em;
+}
+.formLeftContainer {
+  width: 50%;
+  margin-top: 4em;
+}
+.formLeftConTag {
+  margin-top: 3em;
+}
+.formRightContainer {
   width: 50%;
 }
 .formContainerHeader{
   margin: 0.4em 1em;
   font-weight: bold;
 }
-
-.contactForm {
-  display: flex;
-  flex-flow: column wrap;
-  text-align: left;
-}
-
-.contactForm input {
-  margin-left: 2em;
-  margin-bottom: 3.125rem;
-  background-color: transparent;
-  box-shadow: none;
-  border: none;
-  border-bottom: 1px solid #3c3c3c;
-}
-
-.contactForm textarea {
-  width: 100%;
-  margin-left: 2em;
-  background-color: transparent;
-    box-shadow: none;
-    border: none;
-    border-bottom: 1px solid #3c3c3c;
-    height: 3.125rem!important;
-    max-height: 3.125rem!important;
-    overflow: hidden!important;
-    resize: none;
-    max-width: 100%;
-    margin-bottom: 0.5em;
-}
-
-.submitButton {
-  border: none;
-  background-color: #ccc;
-  width: 10%;
-  color: black;
-  font-weight: bold;
-  margin: 2em 2em;
-}
-
 .addressContainer {
   margin: 1em 1em;
+  width: 100%;
+  display: flex;
+}
+.addressLeftContainer {
+  width: 50%;
+}
+.addressRightContainer {
+  width: 50%;
 }
 .addressContainerHeader {
   font-weight: bold;
+  display: flex;
 }
 .addressContainer ul li {
-  margin-left: 10em;
   text-align: left;
 }
-.connectContainer {
-  margin: 1em 1em;
+.socialMediaUl {
+  display: flex;
 }
-.connectContainerHeader {
+.socialMediaLi {
+  margin-left: 1.5em;
+}
+.socialMediaLi a {
+  color: black;
+}
+.contactModal {
+  display: flex;
+}
+.contactModalDiv {
+  border: 1px solid #111;
+  background-color: #111;
+  margin: 1em 0 0 1em;
+  border-radius: 5px;
+  color: white;
+  padding: 0.3em;
+  cursor: pointer;
   font-weight: bold;
 }
-.nav-link {
-  color: black;
-} 
-.nav-link:hover {
-  color: #ccc;
+.optionSelected {
+  border: 1px solid #9c2a00;
+  background-color: #9c2a00;
+  margin: 1em 0 0 1em;
+  border-radius: 5px;
+  color: white;
+  padding: 0.3em;
+  cursor: pointer;
+  font-weight: bold;
+}
+@media (max-width: 750px) {
+  .formContainer {
+    flex-direction: column;
+  }
+  .formLeftContainer {
+    width: 100%;
+    margin: 0 0 0 0.5em;
+  }
+  .formLeftConTag {
+    margin-top: 0.5em;
+  }
+  .formRightContainer {
+    width: 100%;
+    margin-left: 0.5em;
+  }
+}
+@media (max-width: 350px) {
+  .addressContainer {
+    flex-direction: column;
+  }
+  .addressLeftContainer {
+    width: 100%;
+  }
+  .addressRightContainer {
+    width: 100%;
+  }
 }

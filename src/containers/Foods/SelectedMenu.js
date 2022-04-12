@@ -8,14 +8,14 @@ const SelectedMenu = (props) => {
     const [error, setError] = useState();
     const [isLoading, setIsLoading] = useState(false);
     const dispatch = useDispatch();
-    const allItems = useSelector(state => state.foods.availableItems);
+    const allItems = useSelector(state => state.foods.allItems);
     console.log(allItems);
 
     const loadItems = useCallback(async () => {
         setError(null);
         setIsRefreshing(true);
         try {
-            let setItemsAction = await itemsAction.fetchItems();
+            let setItemsAction = await itemsAction.fetchAllItems();
             dispatch(setItemsAction);
         } catch (err) {
             setError(err.message);
@@ -48,7 +48,7 @@ const SelectedMenu = (props) => {
                                 <td>{items.category}</td>
                                 <td>{items.title}</td>
                                 <td>Rs. {items.price}</td>
-                                <select name='Status' className='' onChange={(e) => statusHandler(e,items.id)}>
+                                <select name='Status' className='' value={items.status} onChange={(e) => statusHandler(e,items.id)}>
                                     <option value='available'>Available</option>
                                     <option value='unavailable'>Unavailable</option>
                                 </select>

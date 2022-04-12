@@ -8,6 +8,7 @@ import productPoster from '../../images/food_products_poster.jpg';
 import accomodationPoster from '../../images/accomodation_poster.jpg';
 import photographyPoster from '../../images/photography_poster.jpg';
 import './Orders.css';
+import PartyOrders from '../Foods/PartyOrders';
 
 const Orders = () => {
     const cartItems = useSelector(state => {
@@ -97,6 +98,8 @@ const Orders = () => {
                     {isFoodType === 'Alacarte' &&
                         <MenuCard />
                     }
+                    {isFoodType === 'Party' &&
+                        <PartyOrders />}
                 </>}
             {isSelected === 'product' &&
                 <div className='posterDiv'><img className='posterImage' src={productPoster} /></div>}
